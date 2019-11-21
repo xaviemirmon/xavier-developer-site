@@ -1,9 +1,9 @@
 {
   "color": {
-    "black": "#131110",
-    "white": "#f7f7f7",
-    "primary": "#007043",
-    "secondary": "#B8A45D"
+    "black": "#9B9B9B",
+    "white": "#FFFFFF",
+    "primary": "#4A90E2",
+    "secondary": "#00FFC5"
   },
   "easing": "cubic-bezier(0.215, 0.610, 0.355, 1.000)",
   "breakpoints": {
@@ -33,5 +33,8 @@
   },
   "menu": {
     "style": "glow"
+  },
+  "__gatsby_resolved": {
+    "fileRelativePath": "/content/settings/theme.json"
   }
 }
