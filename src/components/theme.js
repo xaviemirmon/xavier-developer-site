@@ -180,21 +180,33 @@ export const ThemeForm = {
           label: "Overline",
           name: "overline",
           component: "toggle",
+          parse(value) {
+            return value || false
+          },
         },
         {
           label: "Underline",
           name: "underline",
           component: "toggle",
+          parse(value) {
+            return value || false
+          },
         },
         {
           label: "Transparent",
           name: "transparent",
           component: "toggle",
+          parse(value) {
+            return value || false
+          },
         },
         {
           label: "Height",
           name: "height",
           component: "text",
+          parse(value) {
+            return value || ""
+          },
         },
       ],
     },
@@ -208,6 +220,9 @@ export const ThemeForm = {
           description: "Options are 'pill' and 'glow'",
           name: "style",
           component: "text",
+          parse(value) {
+            return value || ""
+          },
         },
       ],
     },
@@ -220,26 +235,41 @@ export const ThemeForm = {
           label: "Default Image",
           name: "image",
           component: "text",
+          parse(value) {
+            return value || ""
+          },
         },
         {
           label: "Overlay",
           name: "overlay",
           component: "toggle",
+          parse(value) {
+            return value || false
+          },
         },
         {
           label: "Large",
           name: "large",
           component: "toggle",
+          parse(value) {
+            return value || false
+          },
         },
         {
           label: "Overlap",
           name: "overlap",
           component: "text",
+          parse(value) {
+            return value || ""
+          },
         },
         {
           label: "Parallax",
           name: "parallax",
           component: "toggle",
+          parse(value) {
+            return value || false
+          },
         },
       ],
     },
@@ -252,6 +282,9 @@ export const ThemeForm = {
           label: "Uppercase H2",
           name: "uppercaseH2",
           component: "toggle",
+          parse(value) {
+            return value || false
+          },
         },
       ],
     },
