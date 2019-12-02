@@ -10,7 +10,7 @@ import slugify from "react-slugify"
 
 import { createRemarkButton } from "gatsby-tinacms-remark"
 import { JsonCreatorPlugin } from "gatsby-tinacms-json"
-import { withPlugin } from "react-tinacms"
+import { withPlugin } from "tinacms"
 
 const MasterLayout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -78,14 +78,10 @@ const CreatePageButton = new JsonCreatorPlugin({
     { name: "path", label: "Path", component: "text", required: true },
   ],
   data(form) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve({
-          title: form.title,
-          path: form.path,
-        })
-      }, 1000)
-    })
+    return {
+      title: form.title,
+      path: form.path,
+    }
   },
 })
 

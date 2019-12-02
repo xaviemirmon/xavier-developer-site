@@ -22,7 +22,7 @@
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.3.5",
     "gatsby-plugin-styled-components": "^3.1.11",
-    "gatsby-plugin-tinacms": "^0.1.15",
+    "gatsby-plugin-tinacms": "^0.1.16",
     "gatsby-plugin-transition-link": "^1.13.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-copy-linked-files": "^2.1.28",
@@ -48,7 +48,8 @@
     "react-helmet": "^5.2.1",
     "react-slugify": "^2.0.1",
     "styled-components": ">=4.1",
-    "styled-icons": "^8.6.0"
+    "styled-icons": "^8.6.0",
+    "tinacms": "^0.10.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
