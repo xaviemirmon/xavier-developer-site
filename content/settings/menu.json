@@ -13,8 +13,15 @@
       "link": "/blog"
     },
     {
+      "label": "CV",
+      "link": "/cv"
+    },
+    {
       "label": "Contact",
       "link": "/contact"
     }
-  ]
+  ],
+  "__gatsby_resolved": {
+    "fileRelativePath": "/content/settings/menu.json"
+  }
 }

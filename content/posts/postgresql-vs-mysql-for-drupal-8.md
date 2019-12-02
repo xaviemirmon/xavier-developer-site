@@ -1,0 +1,62 @@
+---
+title: PostgreSQL vs. MySQL for Drupal 8
+path: /blog/postgresql-vs-mysql-for-drupal-8
+date: '2019-05-24T00:00:00.000Z'
+type: post
+authors:
+  - xavier-mirabelli-montan
+draft: false
+hero:
+  image: ../images/Hero.png
+  large: false
+  overlay: false
+---
+I am starting on a new Drupal 8 website and been trying to figure out what database is best for the needs of the website. MySQL has been the go-to database with Drupal for many years is that still the case? Or are should we be looking elsewhere?
+
+![](https://cdn-images-1.medium.com/max/11520/0*Mh3jJtKiO9nXll-q)
+
+## What we need
+
+The site is currently a reasonably high traffic Drupal 7 website with a large amount of linking content, paragraphs and entities. Due to the architecture of the site, the database is the primary bottleneck. To get around these bottlenecks for our users, we are going to have a headless website using GatsbyJS as the frontend. For the backend, I need to focus on ensuring we have a database that can handle quick writes when adding content and quick reads when filtering the content.
+
+## In theory
+
+When digging around online, it seems like PostgreSQL has the performance edge on MySQL, particularly on more extensive and more complex or write operations. According to [hackr.io](https://hackr.io/blog/postgresql-vs-mysql) PostgreSQL is:
+
+> # Widely used in large systems where read and write speeds are crucial and require execution of complex queries
+
+Excellent — that sounds perfect! However, when looking at Drupal.org, it’s evident that the support for PostgreSQL is definitely behind that of MySQL. The majority of the issues seem to be around contributed modules (many of which aren’t relevant now our site is only the backend), but there are a few issues in the queue that relate to performance.
+
+## Putting it all to the test
+
+For my tests, I used two [Platform.sh](https://platform.sh/) environments, one with PostgreSQL and the other with MySQL (well MariaDB, which is what Platform install as MySQL) — bar that, they were **identical**. The codebase was Drupal 8.6.16 using the beautiful [Seaside Admin Theme](https://www.drupal.org/project/seaside_admin) (shameless plug). I used Devel Generate to create 7050 nodes, which are a similar amount to what we have on the Drupal 7 site.
+
+### MySQL
+
+![](https://cdn-images-1.medium.com/max/4512/1*_lk17wjUhTrEm235Yfbgrw.png)
+
+### PostgreSQL
+
+![](https://cdn-images-1.medium.com/max/4500/1*qrbGVbl_YTog-YC2LRNbPA.png)
+
+On the codebase, I create multiple content types with nested Paragraphs as I would have on the new website. I then simulated a bunch of actions as used by editors on the site, created content, filtered content, etc.
+
+### Profiling
+
+To assess the different elements, I used the new web profiler provided by the Devel module.
+
+![](https://cdn-images-1.medium.com/max/4332/1*faqHL2kU92jgUxXdkFyMJg.png)
+
+Additionally, I used Chrome’s built-in HAR viewer and WebPageTest to find out TTFB in the instances where the web profiler wasn’t loaded, e.g. AJAX.
+
+## The results
+
+And the results are in!
+
+![](https://cdn-images-1.medium.com/max/2708/1*s9fgDHWGCUf5K1d-BmY1YA.png)
+
+It looks like a marginal win for **MySQL** (lower is better). You can see the individual breakdowns on this [Google Sheet](https://docs.google.com/spreadsheets/d/1yPujo5iOUeysO7EPoSbPT93WtxWZss3lDLnQK7sz2LM/edit?usp=sharing). Interestingly most actions when running on PostgreSQL have a couple of extra queries which leads me to believe the codebase isn’t fully optimised for PostgreSQL.
+
+## Conclusion
+
+The results of this test reveal to me that the two databases are virtually identical and that the selection comes down to your particular use case. Over the 8 tests I did, the average difference is only 51ms. So it comes down to your specific use case. If the primary function of my website were to serve a speedy API, then I would go with PostgreSQL. However, as the aim was to reduce the bottleneck on the database for editors. In this instance, the page creation and saving metrics matter most. Therefore, I will be using MySQL. Just by moving to Drupal 8 means the editors should see a decrease of \~4000ms when editing Paragraphs. Winner winner!

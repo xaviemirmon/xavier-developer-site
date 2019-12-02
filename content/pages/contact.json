@@ -11,7 +11,6 @@
     {
       "_template": "FormBlock",
       "name": "Contact Form",
-      "recipient": "scott.byrne@forestry.io",
       "fields": [
         {
           "label": "Name",
@@ -32,8 +31,12 @@
           "_template": "messageInputBlock"
         }
       ],
-      "content": ""
+      "content": "",
+      "recipient": "xavier@whiteskyweb.com"
     }
   ],
-  "displayTitle": true
+  "displayTitle": true,
+  "hero": {
+    "image": "../images/Hero.png"
+  }
 }

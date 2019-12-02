@@ -1,9 +1,9 @@
 {
-  "logo": "Person",
-  "description": "Tina Grande is a feature rich Gatsby starter with full TinaCMS integration.",
-  "author": "TinaCMS",
+  "description": "Xavier Mirabelli-Montan is a Senior Full-stack developer based in Brighton, UK",
+  "author": "Xavier Mirabelli-Montan",
   "__gatsby_resolved": {
     "fileRelativePath": "/content/settings/site.json"
   },
-  "title": "Xavier Mirabelli-Montan"
+  "title": "Xavier Mirabelli-Montan",
+  "logo": false
 }

@@ -3,27 +3,27 @@
   "blocks": [
     {
       "_template": "ContentBlock",
-      "content": "## Umor bis\n\nAdit suo ait in olorinis portitor **undam tangentia** quibus Hectora invideatis cardine pressit fovet, _fuit_; nec barba sudantibus? Forte aliquis, ultaque et is inritamen velamina Clarium: [non](http://retiaque-in.io/). Inter pendentia eligit, sua fugam cumque. Domat ex nomina rogantum genitas delapsam: iam quae capillos facienda lanificae tectus solidorum. Seraque Medea, et exstinctique et conata **Cumarum** species ultra re cognita!\n\n## Nec qui esse indignatus rursus meo labor\n\nEt offensane vocato, vivebat Acrisioniades cinisque antiquus furit corripiens. Ab quoque, cum ponit circuitu resuscitat timor exspiravit corpore. Erat tenus et nocet, pervenit coniuge fibra feris sequentis pares membrana illa. Praelatus tumultus flores annos. Fidumque Acoetes.\n\n1. Vim remis\n2. Non haerebat teneas raptaturque marito huius\n3. Nomen carinas placato mora deprensi umbras\n4. Iole utque quoque\n5. Aedibus totumque timuere senex Argentea corpore Et tanti ficti _non_ removente lenimen _Crete vestigia_ in deus, Olenios velut. Agna fulget, gratia habitant fonti pignus. Cura modo sacra petatur non adligat placebant sic discubuere tamen caelestibus pendebat."
+      "content": "## Welcome to my slice on the web.\n\nHere you can find my latest blog posts, thoughts and journey of how I've gotten where I am today. In addition to my current role at Travel Nation, I am currently working on these projects.\n\n### Power Stack\n\nI am currently working on Power Stack, a boilerplate to get started with Gatsby and Drupal 8. You can have a look at the Github repo here: [https://github.com/whiteskyweb/Power-Stack](https://github.com/whiteskyweb/Power-Stack \"https://github.com/whiteskyweb/Power-Stack\")\n\n### Page builder for Drupal 8\n\nA part of that work has involved creating a page builder for Drupal 8 which allows for much more user-friendly editing experience in Drupal 8.\n\n<iframe width=\"780\" height=\"500\" src=\"https://www.youtube.com/embed/zFyPe4brR2s\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n\n### Seaside Admin for Drupal 8\n\nBeautify your site with Seaside Admin. I created the Seaside Admin theme for Drupal 8 to improve the UX and expirenece of using Drupal 8.  Check it out for yourself at [https://www.drupal.org/project/seaside_admin](https://www.drupal.org/project/seaside_admin \"https://www.drupal.org/project/seaside_admin\")  or simply run:\n\n    composer require 'drupal/seaside_admin:^1.9'\n\n### This site was built using [Gatsby](https://www.gatsbyjs.org) and [TinaCMS](https://www.tinacms.org).\n\nBoth of which are super awesome you should check them out!.  The code is available to download and and fork to your heart's content.  Check it o"
     }
   ],
   "hero": {
-    "headline": "Welcome to Tina Grande.",
-    "textline": "This template is filled with sample content to get you started.",
+    "headline": "Hi 👋 I am Xavier",
+    "textline": "A Senior Full-stack Developer based in Brighton, UK",
     "ctas": [
       {
-        "label": "Read The Blog",
+        "label": "Read my blog",
         "link": "/blog",
         "primary": true,
-        "arrow": true
+        "arrow": false
       },
       {
-        "label": "Contact Us",
+        "label": "Get in touch",
         "link": "/contact",
         "arrow": false,
         "primary": false
       }
     ],
-    "image": "../images/cafe-2.jpg",
+    "image": "../images/Hero.png",
     "large": true
   },
   "displayTitle": false,

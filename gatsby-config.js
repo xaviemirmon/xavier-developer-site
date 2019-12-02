@@ -1,5 +1,5 @@
 const theme = require("./content/settings/theme.json")
-const site = require("./content/settings/theme.json")
+const site = require("./content/settings/site.json")
 
 module.exports = {
   plugins: [
@@ -43,7 +43,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/components/master-layout.js`),
+        component: require.resolve(`./src/components/siteLayout.js`),
       },
     },
     `gatsby-plugin-styled-components`,
@@ -106,7 +106,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Lato:400,700"],
+          families: ["Source Serif Pro:400,700"],
         },
       },
     },

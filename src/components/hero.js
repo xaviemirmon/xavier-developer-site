@@ -105,7 +105,7 @@ export const Headline = styled.h2`
 export const Textline = styled.p`
   font-size: 1.3rem;
   line-height: 1.2;
-  color: ${props => props.theme.color.secondary};
+  color: ${props => props.theme.color.white};
   word-spacing: 1px;
   font-weight: 500;
   text-transform: none;

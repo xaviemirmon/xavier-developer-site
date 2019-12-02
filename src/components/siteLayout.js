@@ -9,6 +9,7 @@ import Helmet from "react-helmet"
 import slugify from "react-slugify"
 
 import { createRemarkButton } from "gatsby-tinacms-remark"
+import { JsonCreatorPlugin } from "gatsby-tinacms-json"
 import { withPlugin } from "react-tinacms"
 
 const MasterLayout = ({ children }) => {
@@ -66,7 +67,29 @@ const CreatePostButton = createRemarkButton({
   ],
 })
 
-export default withPlugin(MasterLayout, CreatePostButton)
+const CreatePageButton = new JsonCreatorPlugin({
+  label: "New Page",
+  filename(form) {
+    let slug = slugify(form.title.toLowerCase())
+    return `content/pages/${slug}.json`
+  },
+  fields: [
+    { name: "title", label: "Title", component: "text", required: true },
+    { name: "path", label: "Path", component: "text", required: true },
+  ],
+  data(form) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve({
+          title: form.title,
+          path: form.path,
+        })
+      }, 1000)
+    })
+  },
+})
+
+export default withPlugin(MasterLayout, [CreatePostButton, CreatePageButton])
 
 export const Site = styled.div`
   position: relative;

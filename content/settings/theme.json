@@ -13,18 +13,18 @@
     "huge": "2200px"
   },
   "radius": {
-    "small": "3px"
+    "small": "23px"
   },
   "header": {
-    "overline": true,
+    "overline": false,
     "transparent": true,
     "height": "3.25rem",
     "underline": true
   },
   "hero": {
-    "image": "../images/cafe.jpg",
+    "image": "../images/Hero.png",
     "large": false,
-    "overlay": true,
+    "overlay": false,
     "overlap": "8rem",
     "parallax": true
   },
@@ -32,7 +32,7 @@
     "uppercaseH2": false
   },
   "menu": {
-    "style": "glow"
+    "style": ""
   },
   "__gatsby_resolved": {
     "fileRelativePath": "/content/settings/theme.json"
