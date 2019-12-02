@@ -11,10 +11,9 @@ hero:
   large: false
   overlay: false
 ---
+Photos from our visit to Kew Little Pigs Farm in Amersham.
 
 29th July 2018
-
-These piggies made me veggie…
 
 ![](https://cdn-images-1.medium.com/max/5476/1*tNkiXe39_r2HWCSgTCo23A.jpeg)
 

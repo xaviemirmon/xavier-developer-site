@@ -1,5 +1,16 @@
-
-# My micro-lifestyle
+---
+title: My micro-lifestyle
+path: /blog/my-micro-lifestyle
+date: '2018-01-09T00:00:00.000Z'
+type: post
+authors:
+  - xavier-mirabelli-montan
+draft: false
+hero:
+  image: ../images/Hero.png
+  large: false
+  overlay: false
+---
 
 Starting off 2018 experimenting with things little and often
 

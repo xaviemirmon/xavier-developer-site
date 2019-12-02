@@ -1,4 +1,16 @@
-
+---
+title: What does a CMS need to be in 2018
+path: /blog/what-does-a-cms-need-to-be-in-2018
+date: '2018-02-02T00:00:00.000Z'
+type: post
+authors:
+  - xavier-mirabelli-montan
+draft: false
+hero:
+  image: ../images/Hero.png
+  large: false
+  overlay: false
+---
 
 CMS’ have greatly changed the way we as web developers think, code and evolve our digital solutions. As the tech landscape changes, we now need to account for more and more ways that content can be accessed. First it was hindered by browser compatibility, then it was responsive design, next mobile apps, and now it’s voice. With the plethora of devices that people access content through, how can we as developers keep up?
 

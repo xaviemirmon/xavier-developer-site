@@ -1,3 +1,16 @@
+---
+title: DrupalCamp Brighton 2016 Learns
+path: /blog/drupalcamp-brighton-2016-learns
+date: '2016-07-08T00:00:00.000Z'
+type: post
+authors:
+  - xavier-mirabelli-montan
+draft: false
+hero:
+  image: ../images/Hero.png
+  large: false
+  overlay: false
+---
 
 # DrupalCamp Brighton 2016 Learns
 
