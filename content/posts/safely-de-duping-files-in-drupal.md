@@ -3,7 +3,7 @@ title: "Safely De-Duping Files in\_Drupal"
 date: '2020-02-11T09:56:54.901Z'
 type: post
 path: /blog/safely-de-duping-files-in-drupal
-draft: true
+draft: false
 ---
 I recently needed to clean up a bunch of on a Drupal site. As a website grows and evolves, the file system can become a bit unruly. As editors upload various versions of the same image and modules change their information architecture the problem grows and grows. The largest culprit of this for me was poorly architected API import which, once fixed, left me with gigabytes of unused images.
 
