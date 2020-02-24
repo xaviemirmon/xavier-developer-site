@@ -27,6 +27,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-fathom',
+      options: {
+        siteId: 'GHBTXKJJ',
+      }
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/static/images`,
