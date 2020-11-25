@@ -2,23 +2,16 @@ import React from "react"
 import styled, { css } from "styled-components"
 import { Droppable, Draggable } from "react-beautiful-dnd"
 import { AddIcon, DragIcon, ReorderIcon, TrashIcon } from "@tinacms/icons"
-import {
-  padding,
-  color,
-  radius,
-  font,
-  IconButton,
-  shadow,
-} from "@tinacms/styles"
+import { IconButton } from "@tinacms/styles"
 
-export const AuthorsField = props => {
+export const AuthorsField = (props) => {
   const { input, field, form } = props
   const [visible, setVisible] = React.useState(false)
   const authors = field.authors
   const authorIDs = input.value || []
 
   const addAuthor = React.useCallback(
-    authorID => {
+    (authorID) => {
       form.mutators.insert(field.name, 0, authorID)
     },
     [field.name, form.mutators]
@@ -38,7 +31,7 @@ export const AuthorsField = props => {
         </IconButton>
         <AuthorMenu open={visible}>
           <AuthorMenuList>
-            {authors.map(author => (
+            {authors.map((author) => (
               <AuthorOption
                 onClick={() => {
                   addAuthor(author.id)
@@ -52,13 +45,13 @@ export const AuthorsField = props => {
         </AuthorMenu>
       </AuthorsHeader>
       <Droppable droppableId={field.name} type={field.name}>
-        {provider => (
+        {(provider) => (
           <AuthorList ref={provider.innerRef}>
             {authorIDs.length === 0 && (
               <EmptyList>There's no authors</EmptyList>
             )}
             {authorIDs.map((authorID, index) => {
-              const author = authors.find(author => author.id === authorID)
+              const author = authors.find((author) => author.id === authorID)
               return (
                 <AuthorListItem
                   author={author}
@@ -123,7 +116,7 @@ const Placeholder = styled.span`
 
 const ItemLabel = styled.label`
   margin: 0;
-  font-size: ${font.size(2)};
+  font-size: var(--tina-font-size-2);
   font-weight: 500;
   flex: 1 1 auto;
   white-space: nowrap;
@@ -136,10 +129,10 @@ const ItemLabel = styled.label`
   padding: 0 0.5rem;
   pointer-events: none;
 
-  ${props =>
+  ${(props) =>
     props.error &&
     css`
-      color: ${color.error()} !important;
+      color: var(--tina-color-error) !important;
     `};
 `
 
@@ -182,7 +175,7 @@ const DeleteButton = styled.button`
   margin: 0;
   transition: all 85ms ease-out;
   &:hover {
-    background-color: ${color.grey(2)};
+    background-color: var(--tina-color-grey-2);
   }
 `
 
@@ -193,12 +186,12 @@ const ListItem = styled.div`
   justify-content: space-between;
   align-items: stretch;
   background-color: white;
-  border: 1px solid ${color.grey(2)};
+  border: 1px solid var(--tina-color-grey-2);
   margin: 0 0 -1px 0;
   overflow: visible;
   line-height: 1.35;
   padding: 0;
-  font-size: ${font.size(2)};
+  font-size: var(--tina-font-size-2);
   font-weight: 500;
 
   ${ItemLabel} {
@@ -208,32 +201,32 @@ const ListItem = styled.div`
   }
 
   svg {
-    fill: ${color.grey(3)};
+    fill: var(--tina-color-grey-3);
     width: 1.25rem;
     height: auto;
     transition: fill 85ms ease-out;
   }
 
   &:hover {
-    background-color: #f6f6f9;
+    background-color: var(--tina-color-grey-1);
     cursor: grab;
 
     ${ItemLabel} {
-      color: #0084ff;
+      color: var(--tina-color-primary);
     }
     ${DeleteButton} {
       svg {
-        fill: ${color.grey(4)};
+        fill: var(--tina-color-grey-4);
       }
       &:hover {
         svg {
-          fill: ${color.grey(8)};
+          fill: var(--tina-color-grey-8);
         }
       }
     }
     ${DragHandle} {
       svg {
-        fill: ${color.grey(8)};
+        fill: var(--tina-color-grey-8);
       }
       svg:first-child {
         opacity: 0;
@@ -251,21 +244,21 @@ const ListItem = styled.div`
   &:nth-last-child(2) {
     border-radius: 0 0 0.25rem 0.25rem;
     &:first-child {
-      border-radius: ${radius("small")};
+      border-radius: var(--tina-radius-small);
     }
   }
 
-  ${p =>
+  ${(p) =>
     p.isDragging &&
     css`
-      border-radius: ${radius("small")};
+      border-radius: var(--tina-radius-small);
       box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.12);
 
       svg {
-        fill: ${color.grey(8)};
+        fill: var(--tina-color-grey-8);
       }
       ${ItemLabel} {
-        color: #0084ff;
+        color: var(--tina-color-primary);
       }
 
       ${DragHandle} {
@@ -281,12 +274,12 @@ const ListItem = styled.div`
 
 const EmptyList = styled.div`
   text-align: center;
-  border-radius: ${radius("small")};
-  background-color: ${color.grey(2)};
-  color: ${color.grey(4)};
+  border-radius: var(--tina-radius-small);
+  background-color: var(--tina-color-grey-2);
+  color: var(--tina-color-grey-4);
   line-height: 1.35;
   padding: 0.75rem 0;
-  font-size: ${font.size(2)};
+  font-size: var(--tina-font-size-2);
   font-weight: 500;
 `
 
@@ -300,7 +293,7 @@ const AuthorsHeader = styled.div`
 
 const FieldLabel = styled.label`
   margin: 0;
-  font-size: ${font.size(2)};
+  font-size: var(--tina-font-size-2);
   font-weight: 500;
   flex: 1 1 auto;
   white-space: nowrap;
@@ -310,17 +303,17 @@ const FieldLabel = styled.label`
   transition: all 85ms ease-out;
   text-align: left;
 
-  ${props =>
+  ${(props) =>
     props.error &&
     css`
-      color: ${color.error()} !important;
+      color: var(--tina-color-error) !important;
     `};
 `
 
 const AuthorMenu = styled.div`
   min-width: 12rem;
-  border-radius: ${radius()};
-  border: 1px solid #efefef;
+  border-radius: var(--tina-radius-big);
+  border: 1px solid var(--tina-color-grey-2);
   display: block;
   position: absolute;
   top: 0;
@@ -330,11 +323,11 @@ const AuthorMenu = styled.div`
   pointer-events: none;
   transition: all 150ms ease-out;
   transform-origin: 100% 0;
-  box-shadow: ${shadow("big")};
+  box-shadow: var(--tina-shadow-big);
   background-color: white;
   overflow: hidden;
   z-index: 100;
-  ${props =>
+  ${(props) =>
     props.open &&
     css`
       opacity: 1;
@@ -351,8 +344,8 @@ const AuthorMenuList = styled.div`
 const AuthorOption = styled.button`
   position: relative;
   text-align: center;
-  font-size: ${font.size(0)};
-  padding: ${padding("small")};
+  font-size: var(--tina-font-size-0);
+  padding: var(--tina-padding-small);
   font-weight: 500;
   width: 100%;
   background: none;
@@ -361,10 +354,10 @@ const AuthorOption = styled.button`
   border: 0;
   transition: all 85ms ease-out;
   &:hover {
-    color: ${color.primary()};
-    background-color: #f6f6f9;
+    color: var(--tina-color-primary);
+    background-color: var(--tina-color-grey-1);
   }
   &:not(:last-child) {
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid var(--tina-color-grey-2);
   }
 `
