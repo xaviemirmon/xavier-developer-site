@@ -35,9 +35,9 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-fathom',
+      resolve: 'gatsby-plugin-plausible',
       options: {
-        siteId: 'GHBTXKJJ',
+        domain: `xavie.mirmon.co.uk`,
       }
     },
     {
