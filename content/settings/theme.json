@@ -33,5 +33,6 @@
   },
   "menu": {
     "style": ""
-  }
+  },
+  "defaultDarkMode": false
 }

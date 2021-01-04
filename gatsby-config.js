@@ -109,11 +109,17 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: "gatsby-omni-font-loader",
       options: {
-        google: {
-          families: ["Source Serif Pro:400,700"],
-        },
+        enableListener: true,
+        preconnect: ["https://fonts.gstatic.com"],
+        web: [
+          {
+            name: "Source Serif Pro",
+            file:
+              "https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap",
+          },
+        ],
       },
     },
   ],
