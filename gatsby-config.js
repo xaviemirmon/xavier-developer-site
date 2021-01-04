@@ -23,7 +23,15 @@ module.exports = {
             },
           },
         },
-        plugins: ["gatsby-tinacms-git", "gatsby-tinacms-remark"],
+        plugins: [
+          {
+            resolve: "gatsby-tinacms-git",
+            options: {
+              sshKey: process.env.SSH_KEY
+            }
+          },
+          "gatsby-tinacms-remark"
+        ],
       },
     },
     {
