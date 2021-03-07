@@ -3,7 +3,7 @@
   "blocks": [
     {
       "_template": "ContentBlock",
-      "content": "## Welcome to my slice of the web.\n\nHere you can find my latest blog posts, thoughts and journey of how I've gotten where I am today.\n\n### This site was built using [Gatsby](https://www.gatsbyjs.org) and [TinaCMS](https://www.tinacms.org) and is hosted on [Netlify](https://www.netlify.com).\n\nBoth of which are super awesome you should check them out!.  The code is available to download and fork to your heart's content.  Check it out here: [https://github.com/xaviemirmon/xavier-developer-site](https://github.com/xaviemirmon/xavier-developer-site \"https://github.com/xaviemirmon/xavier-developer-site\")"
+      "content": "## Welcome to my slice of the web.\n\nHere you can find my latest blog posts, thoughts and journey of how I've gotten where I am today.\n\n### This site was built using [Gatsby](https://www.gatsbyjs.org) and [TinaCMS](https://www.tinacms.org) and is hosted on Gatsby Clo.\n\nBoth of which are super awesome you should check them out!.  The code is available to download and fork to your heart's content.  Check it out here: [https://github.com/xaviemirmon/xavier-developer-site](https://github.com/xaviemirmon/xavier-developer-site \"https://github.com/xaviemirmon/xavier-developer-site\")"
     }
   ],
   "hero": {
