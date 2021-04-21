@@ -6,6 +6,8 @@ type: post
 authors:
   - xavier-mirabelli-montan
 draft: false
+tags:
+  - test
 hero:
   image: ../images/Hero.png
   large: false

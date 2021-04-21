@@ -76,3 +76,4 @@ Sonoma Academy (High School/College), Santa Rosa, CA — High School Diploma, Se
 ## References
 
 These are available upon request.
+

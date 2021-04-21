@@ -38,6 +38,7 @@ module.exports = {
       resolve: 'gatsby-plugin-plausible',
       options: {
         domain: `xavie.mirmon.co.uk`,
+        customDomain: `stats-xavie.mirmon.co.uk`
       }
     },
     {
