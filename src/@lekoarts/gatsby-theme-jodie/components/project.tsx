@@ -7,6 +7,7 @@ import { transparentize } from "polished"
 import { IGatsbyImageData, GatsbyImage } from "gatsby-plugin-image"
 import Layout from "@lekoarts/gatsby-theme-jodie/src/components/layout"
 import Seo from "@lekoarts/gatsby-theme-jodie/src/components/seo"
+import Comments from "../../../components/Comments"
 
 type DataProps = {
   project: {
@@ -66,6 +67,7 @@ const Project: React.FC<PageProps<DataProps>> = ({ data: { project, images }, lo
         ))}
       </div>
     </div>
+    <Comments />
   </Layout>
 )
 
