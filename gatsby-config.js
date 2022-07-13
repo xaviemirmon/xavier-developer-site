@@ -75,13 +75,6 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: 'gatsby-plugin-plausible',
-      options: {
-        domain: `xavie.mirmon.co.uk`,
-        customDomain: `stats-xavie.mirmon.co.uk`
-      }
-    },
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-transition-link`,
     shouldAnalyseBundle && {
