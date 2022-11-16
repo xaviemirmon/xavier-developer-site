@@ -37,7 +37,6 @@ const Navigation = ({ bg }: { bg: string }) => {
       <ul>
         {navigation.map((navItem) => (
           <li key={navItem.slug}>
-            {console.log(/^\/(?!\/)/.test(navItem.slug))}
             {/^\/(?!\/)/.test(navItem.slug) ? 
               <AniLink to={replaceSlashes(`/${basePath}/${navItem.slug}`)} paintDrip color={'white'}>
                 {navItem.name}

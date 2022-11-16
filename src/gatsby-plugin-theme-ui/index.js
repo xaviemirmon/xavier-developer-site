@@ -1,7 +1,8 @@
 import { merge } from "theme-ui"
 import { tailwind } from "@theme-ui/presets"
 import prismPreset from "@theme-ui/prism/presets/github"
-
+import { alpha } from "@theme-ui/color"
+ 
 const contentStyles = {
   px: [3, 3, 4, 5, 6],
   py: [3, 3, 4, 5, 5],
@@ -31,6 +32,17 @@ const theme = merge(tailwind, {
   fonts: {
     body: `"Work Sans", -apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,
   },
+  fontSizes: [
+    '0.875rem',
+    '1rem',
+    '1.25rem',
+    '1.5rem',
+    '1.875rem',
+    '2.25rem',
+    '3rem',
+    '4rem',
+    '4.5rem',
+  ],
   content: {
     page: {
       ...contentStyles,
@@ -57,6 +69,41 @@ const theme = merge(tailwind, {
       color: `heading`,
     },
   },
+  links: {
+    outline: {
+      ...tailwind.buttons.outline,
+      textDecoration: `none`
+    }
+  },
+  badges: {
+    primary: {
+      color: `primary`,
+      fontSize: `.7rem`,
+      fontWeight: 400,
+      bg: alpha('primary', .08),
+      padding: 1,
+      px: 2,
+      borderRadius: 4
+    },
+    outline: {
+      color: 'primary',
+      bg: 'transparent',
+      boxShadow: 'inset 0 0 0 1px',
+    },
+  },
+  cards: {
+    primary: {
+      padding: 2,
+      borderRadius: 4,
+      boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
+    },
+    compact: {
+      padding: 1,
+      borderRadius: 2,
+      border: '1px solid',
+      borderColor: 'muted',
+    },
+  },
   styles: {
     root: {
       color: `text`,
@@ -73,7 +120,7 @@ const theme = merge(tailwind, {
     },
     p: {
       fontSize: 1,
-      letterSpacing: `-0.003em`,
+      letterSpacing: `-0.03em`,
       lineHeight: `body`,
       "--baseline-multiplier": 0.179,
       "--x-height-multiplier": 0.35,

@@ -75,6 +75,12 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-source-medium`,
+      options: {
+        username: `xaviemirmon`,
+      },
+    },
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-transition-link`,
     shouldAnalyseBundle && {
