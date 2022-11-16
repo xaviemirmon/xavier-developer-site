@@ -4,7 +4,7 @@ export const useMediumPostTeaserQuery = () => {
   const { allMediumPost } = useStaticQuery(
     graphql`
     query MediumPostTeaserQuery {
-        allMediumPost(limit: 6) {
+        allMediumPost(limit: 6, sort: {updatedAt: DESC}) {
           edges {
             node {
               title
