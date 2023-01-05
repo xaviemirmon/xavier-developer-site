@@ -1,4 +1,5 @@
 /** @jsx jsx */
+
 import { jsx, get } from "theme-ui"
 import * as React from "react"
 import { Global } from "@emotion/react"
@@ -7,7 +8,7 @@ import Sidebar from "@lekoarts/gatsby-theme-jodie/src/components/sidebar"
 import Footer from "@lekoarts/gatsby-theme-jodie/src/components/footer"
 import Seo from "@lekoarts/gatsby-theme-jodie/src/components/seo"
 import { SkipNavTarget, SkipNavTrigger } from "@lekoarts/gatsby-theme-jodie/src/components/skip-nav"
-import {Script} from "gatsby";
+import { Script } from "gatsby";
 
 type LayoutProps = { children: React.ReactNode; color?: string }
 
