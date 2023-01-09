@@ -53,14 +53,6 @@ const Layout = ({ children, color = `white` }: LayoutProps) => {
                     },
                 })}
             />
-            {process.env.NODE_ENV !== "development" ?
-                <>
-                    <Script src="https://getinsights.io/js/insights.js" onLoad={() => setLoaded(true)}/>
-                    {loaded && <Script>{`insights.init('aPyNoqFkPc_27MVF'); insights.trackPages();`}</Script> }
-                </>
-                : null
-            }
-
             <Seo />
             <SkipNavTrigger />
             <Wrapper>
