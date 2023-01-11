@@ -26,6 +26,13 @@ const Layout = ({ children, color = `white` }: LayoutProps) => {
                     html: {
                         fontSize: `18px`,
                         WebkitTextSizeAdjust: `100%`,
+                        "@font-face": {
+                            fontFamily: "Work Sans-fallback",
+                            sizeAdjust: '111.69%',
+                            ascentAverride: '80%',
+                            src: 'local("Arial")'
+                        }
+                        
                     },
                     img: {
                         borderStyle: `none`,
