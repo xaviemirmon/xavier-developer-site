@@ -1,14 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import * as React from "react"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+import { Link } from "gatsby-link"
 
 const GridItem: React.FC<{ to: string; color: string; className?: string }> = ({ children, to, color, ...props }) => (
   // @ts-ignore
-  <AniLink
+  <Link
     to={to}
-    hex={color}
-    paintDrip
     sx={{
       position: `relative`,
       "> div": {
@@ -81,7 +79,7 @@ const GridItem: React.FC<{ to: string; color: string; className?: string }> = ({
     {...props}
   >
     {children}
-  </AniLink>
+  </Link>
 )
 
 export default GridItem

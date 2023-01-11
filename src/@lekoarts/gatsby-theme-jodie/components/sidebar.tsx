@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { readableColor } from "polished"
 import Logo from "@lekoarts/gatsby-theme-jodie/src/icons/logo"
 import useSiteMetadata from "@lekoarts/gatsby-theme-jodie/src/hooks/use-site-metadata"
 import useJodieConfig from "@lekoarts/gatsby-theme-jodie/src/hooks/use-jodie-config"
 import Navigation from "@lekoarts/gatsby-theme-jodie/src/components/navigation"
+import { Link } from "gatsby-link"
 
 type SidebarProps = { bg: string }
 
@@ -32,9 +32,9 @@ const Sidebar = ({ bg }: SidebarProps) => {
       }}
       data-testid="sidebar"
     >
-      <AniLink to={basePath} aria-label={`${siteTitle}, Back to Home`} sx={{ width: [`3rem`, `4rem`, `4.5rem`, `5rem`], margin: `0 auto` }} paintDrip color={'white'}>
+      <Link to={basePath} aria-label={`${siteTitle}, Back to Home`} sx={{ width: [`3rem`, `4rem`, `4.5rem`, `5rem`], margin: `0 auto` }} >
         <Logo />
-      </AniLink>
+      </Link>
       <div sx={{ py: 4, display: [`none`, `none`, `none`, `block`] }} />
       <Navigation bg={bg} />
     </header>

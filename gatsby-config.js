@@ -78,8 +78,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-gatsby-cloud`,
-    `gatsby-plugin-transition-link`,
-    `gatsby-plugin-preact`,
     {
       resolve: `gatsby-source-rss-feed`,
       options: {

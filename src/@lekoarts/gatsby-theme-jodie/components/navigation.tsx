@@ -1,11 +1,9 @@
 /** @jsx jsx */
 import { jsx, Link as TLink } from "theme-ui"
-import * as React from "react"
 import { Link } from "gatsby"
 import { readableColor } from "polished"
 import { replaceSlashes } from "@lekoarts/gatsby-theme-jodie/src/utils/replace-slashes"
 import useJodieConfig from "@lekoarts/gatsby-theme-jodie/src/hooks/use-jodie-config"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const Navigation = ({ bg }: { bg: string }) => {
   const { navigation, basePath } = useJodieConfig()
@@ -38,9 +36,9 @@ const Navigation = ({ bg }: { bg: string }) => {
         {navigation.map((navItem) => (
           <li key={navItem.slug}>
             {/^\/(?!\/)/.test(navItem.slug) ? 
-              <AniLink to={replaceSlashes(`/${basePath}/${navItem.slug}`)} paintDrip color={'white'}>
+              <Link to={replaceSlashes(`/${basePath}/${navItem.slug}`)}>
                 {navItem.name}
-              </AniLink> :
+              </Link> :
               <a href={navItem.slug} target="_blank" rel="noopener noreferrer">{navItem.name} &#8599;</a>
             }
           </li>
