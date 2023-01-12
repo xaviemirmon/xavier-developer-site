@@ -27,6 +27,7 @@
     "gatsby-plugin-gatsby-cloud": "^4.0.0",
     "gatsby-plugin-manifest": "^5.0.0",
     "gatsby-plugin-mdx": "^4.3.0",
+    "gatsby-plugin-remote-images": "^3.6.0-alpha.1",
     "gatsby-plugin-sitemap": "^6.0.0",
     "gatsby-plugin-webfonts": "^2.3.2",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.30",

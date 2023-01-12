@@ -23,15 +23,17 @@ export const useMediumPostTeaserQuery = () => {
             node {
               title
               virtuals {
-                previewImage {
-                  imageId
-                }
                 readingTime
                 tags {
                   name
                 }
               }
               uniqueSlug
+              localImage {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
             }
           }
         }

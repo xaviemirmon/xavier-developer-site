@@ -55,19 +55,14 @@ module.exports = {
         background_color: `#ffffff`,
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#b75e09`,
+        theme_color: `#b75e09`,
         display: `standalone`,
         icons: [
           {
-            src: `/Xavie-profile.png`,
+            src: `/icon-square-192x192.png`,
             sizes: `192x192`,
             type: `image/png`,
-          },
-          {
-            src: `/Xavie-profile.png`,
-            sizes: `512x512`,
-            type: `image/png`,
-          },
+          }
         ],
       },
     },
@@ -84,6 +79,14 @@ module.exports = {
         url: `https://medium.com/feed/xaviemirmon`,
         name: `MediumPosts`,
       }
+    },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'MediumPost',
+        imagePath: 'virtuals.previewImage.imageId',
+        prepareUrl: url => (`https://miro.medium.com/fit/c/500/333/${url}`),
+      },
     },
     shouldAnalyseBundle && {
       resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,

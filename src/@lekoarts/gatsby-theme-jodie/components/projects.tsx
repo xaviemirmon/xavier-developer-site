@@ -52,3 +52,5 @@ const Project: React.FC<PageProps<DataProps>> = ({ data: { projects }, location 
 )
 
 export default Project
+
+export const Head: HeadFC<JodieProjectsProps> = ({ location }) => <Seo title="Projects" pathname={location.pathname} />
