@@ -24,7 +24,7 @@ export default async function Home() {
           />
           <div>
             <h1>
-              Hi 👋 I'm <span className="text-gradient">Xavier</span>
+              Hi 👋 I&apos;m <span className="text-gradient">Xavier</span>
             </h1>
             <h2>Lead Fullstack Product Engineer</h2>
           </div>

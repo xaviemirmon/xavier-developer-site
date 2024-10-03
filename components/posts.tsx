@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { formatDate, getBlogPosts, groupPostsByYear } from "@/utils";
 import styles from "./posts.module.css";
-import {
-  Key,
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-  AwaitedReactNode,
-} from "react";
+import { Key } from "react";
+import { Metadata } from "@/utils";
+
+interface BlogPost {
+  slug: Key;
+  metadata: Metadata
+}
 
 export function BlogPosts() {
   const allBlogs = getBlogPosts();
@@ -23,32 +22,14 @@ export function BlogPosts() {
           <div key={year}>
             <p className={`${styles.year}`}>{year}</p>
             <ul className={`${styles.list}`}>
-              {groupedPosts[year].map(
-                (post: {
-                  slug: Key | null | undefined;
-                  metadata: {
-                    title:
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactElement<any, string | JSXElementConstructor<any>>
-                      | Iterable<ReactNode>
-                      | ReactPortal
-                      | Promise<AwaitedReactNode>
-                      | null
-                      | undefined;
-                    publishedAt: string;
-                  };
-                }) => (
-                  <li key={post.slug}>
-                    <Link href={`/blog/${post.slug}`}>
-                      {post.metadata.title} -{" "}
-                      {formatDate(post.metadata.publishedAt)}
-                    </Link>
-                  </li>
-                ),
-              )}
+              {groupedPosts[year].map((post: BlogPost) => (
+                <li key={post.slug}>
+                  <Link href={`/blog/${post.slug}`}>
+                    {post.metadata.title} -{" "}
+                    {formatDate(post.metadata.publishedAt)}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         ))}

@@ -9,11 +9,14 @@ import {
   OnLoadingComplete,
 } from "next/dist/shared/lib/get-img-props";
 
-// Table component with explicit React.JSX.Element return type
+
+// Define a more specific type for table rows
+type TableRow = (string | number | bigint | boolean | React.ReactNode | null | undefined)[];
+
 type TableProps = {
   data: {
     headers: (string | number | bigint | boolean | React.ReactNode | null | undefined)[];
-    rows: any[][];
+    rows: TableRow[]; // Use TableRow type here
   };
 };
 
@@ -178,7 +181,7 @@ export function CustomMDX(props: React.JSX.IntrinsicAttributes & MDXRemoteProps)
   return (
     <MDXRemote
       {...props}
-      //@ts-ignore
+      //@ts-expect-error
       components={{ ...components, ...(props.components || {}) }}
     />
   );
