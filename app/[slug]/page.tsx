@@ -12,7 +12,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }) {
+export function generateMetadata({ params }: { params: { slug: string } }) {
   let page = getPages().find((page) => page.slug === params.slug);
   if (!page) {
     return;
@@ -52,7 +52,7 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function Blog({ params }) {
+export default function Blog({ params }: { params: { slug: string } }) {
   let page = getPages().find((page) => page.slug === `${params.slug}`);
 
   if (!page) {

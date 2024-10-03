@@ -13,7 +13,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }) {
+export function generateMetadata({ params }: { params: { slug: string } }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     return;
@@ -53,14 +53,14 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function Blog({ params }) {
+export default function Blog({ params }: { params: { slug: string } }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
-
-  const stats = readingTime(post?.content);
 
   if (!post) {
     notFound();
   }
+
+  const stats = readingTime(post.content);
 
   return (
     <div className={`${styles.post} container`}>

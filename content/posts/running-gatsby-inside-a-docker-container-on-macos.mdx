@@ -59,14 +59,15 @@ services:
  file: ${HOME}/.docksal/stacks/services.yml  
       service: cli  
     labels:  
-      - io.docksal.virtual-host=${VIRTUAL_HOST}  
- - io.docksal.virtual-port=3000  
- ports:  
- - "5001:5001"  
- environment:  
- - INTERNAL_STATUS_PORT=5001  
- - CHOKIDAR_USEPOLLING=true  
- working_dir: /var/www  
- command: \["bash", "-lc", "yarn develop -H 0.0.0.0 -p 3000"\]  
- depends_on:  
- - cli
+      - io.docksal.virtual-host=${VIRTUAL_HOST}
+
+- io.docksal.virtual-port=3000  
+  ports:
+- "5001:5001"  
+  environment:
+- INTERNAL_STATUS_PORT=5001
+- CHOKIDAR_USEPOLLING=true  
+  working_dir: /var/www  
+  command: \["bash", "-lc", "yarn develop -H 0.0.0.0 -p 3000"\]  
+  depends_on:
+- cli

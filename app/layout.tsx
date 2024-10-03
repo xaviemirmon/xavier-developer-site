@@ -24,10 +24,10 @@ export default function RootLayout({
         <Header />
         {children}
         <footer className={`container`}>
-        <p>
-          &copy; {new Date(Date.now()).getFullYear()} Xavier Mirabelli-Montan
-        </p>
-      </footer>
+          <p>
+            &copy; {new Date(Date.now()).getFullYear()} Xavier Mirabelli-Montan
+          </p>
+        </footer>
       </body>
     </html>
   );

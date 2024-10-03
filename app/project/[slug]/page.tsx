@@ -12,8 +12,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }) {
-  let project = getProjects().find((project) => project.metadata.slug === params.slug);
+export function generateMetadata({ params }: { params: { slug: string } }) {
+  let project = getProjects().find(
+    (project) => project.metadata.slug === params.slug,
+  );
   if (!project) {
     return;
   }
@@ -52,8 +54,10 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function Blog({ params }) {
-  let project = getProjects().find((project) => project.metadata.slug === `/project/${params.slug}`);
+export default function Blog({ params }: { params: { slug: string } }) {
+  let project = getProjects().find(
+    (project) => project.metadata.slug === `/project/${params.slug}`,
+  );
 
   if (!project) {
     notFound();

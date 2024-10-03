@@ -11,48 +11,52 @@ Getting started was a bit slow going. We all started with great ambitions of doi
 # Sunday
 
 I had a lot more successes on the Sunday. I decided to create my blog in D8 and found it a very pleasant expirience. TWIG is amazingly quick to use and I was able to get the majority of the themeing for this blog done in just hours! The .info file is now a YAML file.
+
 ```
-name: White Sky Web  
-type: theme  
-description: 'White Sky Web theme based on Classy'  
-core: 8.x  
-package: custom  
-base theme: classy  
+name: White Sky Web
+type: theme
+description: 'White Sky Web theme based on Classy'
+core: 8.x
+package: custom
+base theme: classy
 libraries:
 
-- whiteskyweb/baseregions:  
-  menu: Menu  
-  header: Header  
-  content: Content  
-  sidebar_first: First sidebar  
+- whiteskyweb/baseregions:
+  menu: Menu
+  header: Header
+  content: Content
+  sidebar_first: First sidebar
   footer: Footer
 ```
+
 In this instance I have implmented a second THEME.libraries.yml to define all CSS and JS
+
 ```
-base:  
- version: VERSION  
- css:  
- theme:  
- assets/css/bootstrap.css: {}  
- assets/css/font-awesome.min.css: {}  
- assets/css/main.css: {}  
- //cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css: {}  
- js:  
- assets/js/classie.js: {}  
- assets/js/bootstrap.min.js: {}  
- assets/js/smoothscroll.js: {}  
- //cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js: {}  
- assets/js/main.js: {}  
- dependencies:  
+base:
+ version: VERSION
+ css:
+ theme:
+ assets/css/bootstrap.css: {}
+ assets/css/font-awesome.min.css: {}
+ assets/css/main.css: {}
+ //cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css: {}
+ js:
+ assets/js/classie.js: {}
+ assets/js/bootstrap.min.js: {}
+ assets/js/smoothscroll.js: {}
+ //cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js: {}
+ assets/js/main.js: {}
+ dependencies:
  - core/jquery
 ```
+
 You can use the .theme file D8’s version of the template.php file to pass variables to TWIG
 
-```<?php/\*\*  
-\* Add a variable to TWIG  
-\*/  
-function whiteskyweb\_preprocess\_html(&$variables) {  
-  $variables\['profile\_img'\] = '/' . drupal\_get\_path('theme','whiteskyweb') . '/assets/img/profile.jpg';  
+````<?php/**
+\* Add a variable to TWIG
+\*/
+function whiteskyweb\_preprocess\_html(&$variables) {
+  $variables\['profile\_img'\] = '/' . drupal\_get\_path('theme','whiteskyweb') . '/assets/img/profile.jpg';
 }```
 
 # Wrap-up
@@ -60,3 +64,4 @@ function whiteskyweb\_preprocess\_html(&$variables) {
 Drupal 8 is a great improvement on Drupal 7 when you install from it scratch. I found TWIG really quick for themeing and I love the new ‘Quick Edit’ inline editing. For anything other than small site/blogs and I can’t see it being ready for the type of sites we are buillding at miggle am building within the next 1–2 years because the contrib modules just aren’t there. Contrib modules like pathauto still need to be developed for the prime time.
 
 Check out more of what we got up to on YouTube.
+````

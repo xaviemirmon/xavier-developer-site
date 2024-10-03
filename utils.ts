@@ -6,6 +6,8 @@ type Metadata = {
   publishedAt: string;
   summary: string;
   image?: string;
+  slug?: string;
+  cover?: string;
 };
 
 function parseFrontmatter(fileContent: string) {
@@ -26,7 +28,7 @@ function parseFrontmatter(fileContent: string) {
   return { metadata: metadata as Metadata, content };
 }
 
-function getMDXFiles(dir) {
+function getMDXFiles(dir: string) {
   let files: string[] = [];
 
   // Recursively traverse through directories
@@ -71,7 +73,7 @@ export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "content", "posts")).sort(
     (a, b) =>
       new Date(b.metadata.publishedAt).getTime() -
-      new Date(a.metadata.publishedAt).getTime()
+      new Date(a.metadata.publishedAt).getTime(),
   );
 }
 
@@ -80,12 +82,10 @@ export function getProjects() {
   return getMDXData(path.join(process.cwd(), "content", "projects"));
 }
 
-
 export function getPages() {
   // Modified to search recursively in /app/projects and subdirectories
   return getMDXData(path.join(process.cwd(), "content", "pages"));
 }
-
 
 export function formatDate(date: string, includeRelative = false) {
   let currentDate = new Date();
@@ -123,9 +123,9 @@ export function formatDate(date: string, includeRelative = false) {
   return `${fullDate} (${formattedDate})`;
 }
 
-export const groupPostsByYear = (posts) => {
+export const groupPostsByYear = (posts: any[]) => {
   return posts.reduce((acc, post) => {
-    const year = new Date(post.metadata.publishedAt).getFullYear();
+    const year: number = new Date(post.metadata.publishedAt).getFullYear();
     if (!acc[year]) {
       acc[year] = [];
     }

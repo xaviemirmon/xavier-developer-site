@@ -4,7 +4,6 @@ import Link from "next/link";
 import { getBlogPosts, getProjects } from "@/utils";
 
 export default async function Home() {
-
   const projects = await getProjects();
   const posts = await getBlogPosts();
 
@@ -39,26 +38,31 @@ export default async function Home() {
             <div>
               {projects &&
                 projects.map((project) => {
-                  
                   return (
-                  <div className={styles["project-card"]}>
-                    <div className={styles.image}>
-                      <Image
-                        src={`/images/projects/${project.metadata.cover}`}
-                        alt={project.metadata.title}
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                        style={{ width: "100%", height: "auto" }}
-                      />
-                      
+                    <div className={styles["project-card"]}>
+                      <div className={styles.image}>
+                        <Image
+                          src={`/images/projects/${project.metadata.cover}`}
+                          alt={project.metadata.title}
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </div>
+                      <div className={styles.text}>
+                        <h3>{project.metadata.title}</h3>
+                        <Link
+                          href={
+                            project.metadata.slug ? project.metadata.slug : "#"
+                          }
+                        >
+                          View more
+                        </Link>
+                      </div>
                     </div>
-                    <div className={styles.text}>
-                      <h3>{project.metadata.title}</h3>
-                      <Link href={project.metadata.slug}>View more</Link>
-                    </div>
-                  </div>
-                )})}
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -68,14 +72,16 @@ export default async function Home() {
             <h2>Latest blogs</h2>
             <Link href={"/blog"}>View all</Link>
           </div>
-          
+
           {posts &&
             posts.map(
               (blog, index: number) =>
                 index < 5 && (
-                  <div>
-                    <h3>{blog.metadata.title}</h3>
-                  </div>
+                  <p className={styles.postTitle}>
+                    <Link href={`/blog/${blog.slug}`}>
+                      {blog.metadata.title}
+                    </Link>
+                  </p>
                 ),
             )}
         </div>

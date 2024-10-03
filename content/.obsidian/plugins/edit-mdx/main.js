@@ -12,19 +12,23 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
+  if ((from && typeof from === "object") || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+        __defProp(to, key, {
+          get: () => from[key],
+          enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
+        });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __toCommonJS = (mod) =>
+  __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // main.ts
 var main_exports = {};
 __export(main_exports, {
-  default: () => MdxTools
+  default: () => MdxTools,
 });
 module.exports = __toCommonJS(main_exports);
 var import_obsidian = require("obsidian");
@@ -35,30 +39,38 @@ var MdxTools = class extends import_obsidian.Plugin {
     this.addRibbonIcon("add-note-glyph", "New .mdx file", (evt) => {
       this.createMDX();
     });
-    this.registerEvent(this.app.workspace.on("file-menu", (menu, file) => {
-      menu.addItem((item) => {
-        item.setTitle("New .mdx file").setIcon("add-note-glyph").onClick(async () => {
-          let folder;
-          const fname = file.path;
-          if (fname.search("(\\.[^.]+)$") > 0 && file.parent) {
-            folder = file.parent.path;
-          } else {
-            folder = fname;
-          }
-          this.createMDX(folder);
+    this.registerEvent(
+      this.app.workspace.on("file-menu", (menu, file) => {
+        menu.addItem((item) => {
+          item
+            .setTitle("New .mdx file")
+            .setIcon("add-note-glyph")
+            .onClick(async () => {
+              let folder;
+              const fname = file.path;
+              if (fname.search("(\\.[^.]+)$") > 0 && file.parent) {
+                folder = file.parent.path;
+              } else {
+                folder = fname;
+              }
+              this.createMDX(folder);
+            });
         });
-      });
-    }));
+      }),
+    );
   }
-  onunload() {
-  }
+  onunload() {}
   checkExists(filepath) {
     return this.app.vault.getAbstractFileByPath(filepath) && true;
   }
   createMDX(folder) {
     var _a;
     if (!folder) {
-      folder = this.app.fileManager.getNewFileParent(((_a = this.app.workspace.getActiveFile()) == null ? void 0 : _a.path) || "").path;
+      folder = this.app.fileManager.getNewFileParent(
+        ((_a = this.app.workspace.getActiveFile()) == null
+          ? void 0
+          : _a.path) || "",
+      ).path;
     }
     let filename = (0, import_obsidian.normalizePath)(folder + "/Untitled.mdx");
     if (!this.checkExists(filename)) {
@@ -67,7 +79,9 @@ var MdxTools = class extends import_obsidian.Plugin {
       let iter = 0;
       while (true) {
         iter = iter + 1;
-        filename = (0, import_obsidian.normalizePath)(folder + "/Untitled " + iter + ".mdx");
+        filename = (0, import_obsidian.normalizePath)(
+          folder + "/Untitled " + iter + ".mdx",
+        );
         if (!this.checkExists(filename)) {
           this.app.vault.create(filename, "");
           break;

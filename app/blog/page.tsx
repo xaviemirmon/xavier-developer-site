@@ -1,5 +1,5 @@
 import { BlogPosts } from "@/components/posts";
-import styles from './blog-list.module.css'
+import styles from "./blog-list.module.css";
 
 export const metadata = {
   title: "Blog",

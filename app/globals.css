@@ -39,7 +39,8 @@ p {
   font-weight: 500;
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: 32px;
 }
 
