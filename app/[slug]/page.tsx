@@ -5,7 +5,7 @@ import { baseUrl } from "@/app/sitemap";
 import styles from "./page.module.css";
 
 export async function generateStaticParams() {
-  let pages = getPages();
+  const pages = getPages();
 
   return pages.map((page) => ({
     slug: page.slug,
@@ -13,18 +13,18 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
-  let page = getPages().find((page) => page.slug === params.slug);
+  const page = getPages().find((page) => page.slug === params.slug);
   if (!page) {
     return;
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
   } = page.metadata;
-  let ogImage = image
+  const ogImage = image
     ? image
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
@@ -53,7 +53,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 }
 
 export default function Blog({ params }: { params: { slug: string } }) {
-  let page = getPages().find((page) => page.slug === `${params.slug}`);
+  const page = getPages().find((page) => page.slug === `${params.slug}`);
 
   if (!page) {
     notFound();

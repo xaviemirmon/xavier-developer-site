@@ -11,7 +11,7 @@ import {
 } from "react";
 
 export function BlogPosts() {
-  let allBlogs = getBlogPosts();
+  const allBlogs = getBlogPosts();
 
   const groupedPosts = groupPostsByYear(allBlogs);
 

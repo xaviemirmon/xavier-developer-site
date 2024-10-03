@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Link from "next/link";
 import Image from "next/image";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
@@ -10,50 +9,23 @@ import {
   OnLoadingComplete,
 } from "next/dist/shared/lib/get-img-props";
 
-function Table({ data }) {
-  let headers = data.headers.map(
-    (
-      header:
-        | string
-        | number
-        | bigint
-        | boolean
-        | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-        | Iterable<React.ReactNode>
-        | React.ReactPortal
-        | Promise<React.AwaitedReactNode>
-        | null
-        | undefined,
-      index: React.Key | null | undefined,
-    ) => <th key={index}>{header}</th>,
-  );
-  let rows = data.rows.map(
-    (row: any[], index: React.Key | null | undefined) => (
-      <tr key={index}>
-        {row.map(
-          (
-            cell:
-              | string
-              | number
-              | bigint
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | Promise<React.AwaitedReactNode>
-              | null
-              | undefined,
-            cellIndex: React.Key | null | undefined,
-          ) => (
-            <td key={cellIndex}>{cell}</td>
-          ),
-        )}
-      </tr>
-    ),
-  );
+// Table component with explicit React.JSX.Element return type
+type TableProps = {
+  data: {
+    headers: (string | number | bigint | boolean | React.ReactNode | null | undefined)[];
+    rows: any[][];
+  };
+};
+
+function Table({ data }: TableProps): React.JSX.Element {
+  const headers = data.headers.map((header, index) => <th key={index}>{header}</th>);
+  const rows = data.rows.map((row, index) => (
+    <tr key={index}>
+      {row.map((cell, cellIndex) => (
+        <td key={cellIndex}>{cell}</td>
+      ))}
+    </tr>
+  ));
 
   return (
     <table>
@@ -65,114 +37,111 @@ function Table({ data }) {
   );
 }
 
-function CustomLink(
-  props:
-    | (React.JSX.IntrinsicAttributes &
-        Omit<
-          React.AnchorHTMLAttributes<HTMLAnchorElement>,
-          keyof {
-            href: string | UrlObject;
-            as?: string | UrlObject;
-            replace?: boolean;
-            scroll?: boolean;
-            shallow?: boolean;
-            passHref?: boolean;
-            prefetch?: boolean | null;
-            locale?: string | false;
-            legacyBehavior?: boolean;
-            onMouseEnter?: React.MouseEventHandler<HTMLAnchorElement>;
-            onTouchStart?: React.TouchEventHandler<HTMLAnchorElement>;
-            onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-          }
-        > & {
-          href: string | UrlObject;
-          as?: string | UrlObject;
-          replace?: boolean;
-          scroll?: boolean;
-          shallow?: boolean;
-          passHref?: boolean;
-          prefetch?: boolean | null;
-          locale?: string | false;
-          legacyBehavior?: boolean;
-          onMouseEnter?: React.MouseEventHandler<HTMLAnchorElement>;
-          onTouchStart?: React.TouchEventHandler<HTMLAnchorElement>;
-          onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-        } & {
-          children?: React.ReactNode;
-        } & React.RefAttributes<HTMLAnchorElement>)
-    | (React.JSX.IntrinsicAttributes &
-        React.ClassAttributes<HTMLAnchorElement> &
-        React.AnchorHTMLAttributes<HTMLAnchorElement>),
-) {
-  let href = props.href;
+type CustomLinkProps = React.JSX.IntrinsicAttributes &
+  Omit<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    "href"
+  > & {
+    href?: string | UrlObject;
+    as?: string | UrlObject;
+    replace?: boolean;
+    scroll?: boolean;
+    shallow?: boolean;
+    passHref?: boolean;
+    prefetch?: boolean | null;
+    locale?: string | false;
+    legacyBehavior?: boolean;
+    onMouseEnter?: React.MouseEventHandler<HTMLAnchorElement>;
+    onTouchStart?: React.TouchEventHandler<HTMLAnchorElement>;
+    onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+    children?: React.ReactNode;
+  } & React.RefAttributes<HTMLAnchorElement>;
 
-  if (href.startsWith("/")) {
+function CustomLink(props: CustomLinkProps) {
+  const { href, ...rest } = props; // Extract href to handle separately
+
+  if (!href) {
+    return <a {...rest} />;
+  }
+
+  if (typeof href === "string" && href.startsWith("/")) {
     return (
-      <Link href={href} {...props}>
+      <Link {...rest} href={href}>
         {props.children}
       </Link>
     );
   }
 
-  if (href.startsWith("#")) {
-    return <a {...props} />;
+  if (typeof href === "string" && href.startsWith("#")) {
+    return <a {...rest} href={href} />;
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a target="_blank" rel="noopener noreferrer" {...rest} href={href as string}>
+      {props.children}
+    </a>
+  );
 }
 
-function RoundedImage(
-  props: React.JSX.IntrinsicAttributes &
-    Omit<
-      React.DetailedHTMLProps<
-        React.ImgHTMLAttributes<HTMLImageElement>,
-        HTMLImageElement
-      >,
-      "ref" | "height" | "width" | "loading" | "alt" | "src" | "srcSet"
-    > & {
-      src: string | import("next/dist/shared/lib/get-img-props").StaticImport;
-      alt: string;
-      width?: number | `${number}` | undefined;
-      height?: number | `${number}` | undefined;
-      fill?: boolean | undefined;
-      loader?: import("next/image").ImageLoader | undefined;
-      quality?: number | `${number}` | undefined;
-      priority?: boolean | undefined;
-      loading?: "eager" | "lazy" | undefined;
-      placeholder?: PlaceholderValue | undefined;
-      blurDataURL?: string | undefined;
-      unoptimized?: boolean | undefined;
-      overrideSrc?: string | undefined;
-      onLoadingComplete?: OnLoadingComplete | undefined;
-      layout?: string | undefined;
-      objectFit?: string | undefined;
-      objectPosition?: string | undefined;
-      lazyBoundary?: string | undefined;
-      lazyRoot?: string | undefined;
-    } & React.RefAttributes<HTMLImageElement | null>,
-) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+type RoundedImageProps = React.JSX.IntrinsicAttributes &
+  Omit<
+    React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
+    "ref" | "height" | "width" | "loading" | "alt" | "src" | "srcSet"
+  > & {
+    src: string | import("next/dist/shared/lib/get-img-props").StaticImport;
+    alt: string;
+    width?: number | `${number}` | undefined;
+    height?: number | `${number}` | undefined;
+    fill?: boolean | undefined;
+    loader?: import("next/image").ImageLoader | undefined;
+    quality?: number | `${number}` | undefined;
+    priority?: boolean | undefined;
+    loading?: "eager" | "lazy" | undefined;
+    placeholder?: PlaceholderValue | undefined;
+    blurDataURL?: string | undefined;
+    unoptimized?: boolean | undefined;
+    overrideSrc?: string | undefined;
+    onLoadingComplete?: OnLoadingComplete | undefined;
+    layout?: string | undefined;
+    objectFit?: string | undefined;
+    objectPosition?: string | undefined;
+    lazyBoundary?: string | undefined;
+    lazyRoot?: string | undefined;
+  } & React.RefAttributes<HTMLImageElement | null>;
+
+function RoundedImage(props: RoundedImageProps) {
+  return <Image className="rounded-lg" {...props} />;
 }
 
-function Code({ children, ...props }) {
-  let codeHTML = highlight(children);
+// Updated Code component to handle optional children and ReactNode
+type CodeProps = React.HTMLAttributes<HTMLElement> & {
+  children?: React.ReactNode;  // Make children optional
+};
+
+function Code({ children, ...props }: CodeProps): React.JSX.Element {
+  // Safely convert children to string if it's not a string, or handle undefined
+  const codeString = typeof children === 'string' ? children : String(children ?? '');
+  const codeHTML = highlight(codeString);
+
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
-function slugify(str: { toString: () => string }) {
+function slugify(str: { toString: () => string }): string {
   return str
     .toString()
     .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/&/g, "-and-") // Replace & with 'and'
-    .replace(/[^\w\-]+/g, "") // Remove all non-word characters except for -
-    .replace(/\-\-+/g, "-"); // Replace multiple - with single -
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/&/g, "-and-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-");
 }
 
 function createHeading(level: number) {
-  const Heading = ({ children }) => {
-    let slug = slugify(children);
+  const Heading: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    // Ensure children is converted to a string safely
+    const slug = slugify(children ? String(children) : "");
+
     return React.createElement(
       `h${level}`,
       { id: slug },
@@ -183,7 +152,7 @@ function createHeading(level: number) {
           className: "anchor",
         }),
       ],
-      children,
+      children
     );
   };
 
@@ -192,7 +161,7 @@ function createHeading(level: number) {
   return Heading;
 }
 
-let components = {
+const components = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
@@ -205,12 +174,11 @@ let components = {
   Table,
 };
 
-export function CustomMDX(
-  props: React.JSX.IntrinsicAttributes & MDXRemoteProps,
-) {
+export function CustomMDX(props: React.JSX.IntrinsicAttributes & MDXRemoteProps) {
   return (
     <MDXRemote
       {...props}
+      //@ts-ignore
       components={{ ...components, ...(props.components || {}) }}
     />
   );

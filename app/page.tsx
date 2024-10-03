@@ -39,7 +39,7 @@ export default async function Home() {
               {projects &&
                 projects.map((project) => {
                   return (
-                    <div className={styles["project-card"]}>
+                    <div key={project.metadata.title} className={styles["project-card"]}>
                       <div className={styles.image}>
                         <Image
                           src={`/images/projects/${project.metadata.cover}`}
@@ -77,7 +77,7 @@ export default async function Home() {
             posts.map(
               (blog, index: number) =>
                 index < 5 && (
-                  <p className={styles.postTitle}>
+                  <p key={blog.slug} className={styles.postTitle}>
                     <Link href={`/blog/${blog.slug}`}>
                       {blog.metadata.title}
                     </Link>
