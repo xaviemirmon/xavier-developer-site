@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react"
 import "./globals.css";
 import { Header } from "@/components/Header";
 
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={workSans.className}>
+        <Analytics />
         <Header />
         {children}
         <footer className={`container`}>
