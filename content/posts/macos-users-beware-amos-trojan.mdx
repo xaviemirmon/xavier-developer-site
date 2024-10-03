@@ -1,0 +1,113 @@
+---
+title: "MacOS users beware! AMOS Trojan"
+publishedAt: "2023-10-30T22:48:20.815Z"
+summary: "As a lifetime MacOS user, I’ve always rested comfortably knowing that hackers generally target Windows over MacOS. That said, I’ve always installed AV as an added precaution as I know that in my line…"
+---
+
+![Photo by [Michael Geiger](https://unsplash.com/@jackson_893?utm_source=medium&utm_medium=referral) on [Unsplash](https://unsplash.com?utm_source=medium&utm_medium=referral)](https://cdn-images-1.medium.com/max/10024/0*Gic2VDxj1eJryQBL)
+
+A couple of weeks ago, I experienced a first — a trojan horse on MacOS, and it wasn’t pretty…
+
+As a lifetime MacOS user, I’ve always rested comfortably knowing that hackers generally target Windows over MacOS. That said, I’ve always installed AV as an added precaution as I know that in my line of work doing web development, there is often extra low-level access to the OS required.
+
+I decided to organise myself for a recent project using the Notion app. As usual, I went to Google and typed “Notion Mac app.” There was a sponsored link in the results list, which I clicked on and downloaded the .dmg installer.
+
+![](https://cdn-images-1.medium.com/max/2000/1*VqAklPi407nvhu7nR1J9yQ.png)
+
+I opened the installer, which looked strange as it was missing some of the branding, but I didn’t think much of it and installed it.
+
+![An example installer for the Trading View app](https://cdn-images-1.medium.com/max/2000/0*-N1DeCjdwxj9fgkW.jpg)
+
+Voilà installed right? Wrong—this is where the true horror and shock began!
+
+I was “fortunately” alert to the fact that something wasn’t right when a terminal window opened and displayed some errors. This behaviour is entirely unexpected for a standard MacOS installer.
+
+## Investigating the file
+
+Feeling that something was off, I ensured that my antivirus was up to date and put this file through a scan—no results. I then remembered from one of my favourite podcasts, Darknet Diaries, that there was a tool for uploading new virus signatures called ‘[Virus Total](https://www.virustotal.com/gui/home/upload).’ I uploaded the installer file there and it came back with the label of ‘trojan.stealer/amos’ so I had proof that I’d indeed been compromised.
+
+## Removing the virus
+
+Rather alarmingly, at the time of this compromise, on 21st August 2023, I’d found only two antivirus tools (despite it being covered in the news in April 2023) Avast and AVG tools included this in their scans. I opted to install the latter, and it found and removed the trojan from my machine.
+
+## How did I get duped?
+
+With the virus safely removed, I wondered how I downloaded it. The page I went to looked exactly like the Notion homepage. Luckily, I had the webpage still open, so I tried to see if there were any warning signs. Sh*t! the URL was **https://notio.pw/**?utm_campaign=CjwKCAjwloynBhBbEiwAGY25dEvBN5EbUsSvZIuvi2NQTrQH9IT9lsN2e3ztaoaiqXd1C_H3SYAoAhoCzvQQAvD_BwE&utm_term=\{keyword\}&utm_medium=tm&lpurl=https://www.notion.so/help/guides
+ Not **https://notion.so,** which is the domain for Notion.
+
+### Was the Notion site compromised?
+
+I clicked on an ad with the link pointing to [https://notion.so](https://notion.so) and not .pw, so how did I get to the scammers' site? Looking into the Notion site, it’s built using Next.js and Contentful, which is a relatively secure setup yet not completely impervious to vulnerabilities. I don’t think it came from there, but rather, the Ad itself and Google didn’t correctly verify the link was indeed pointed to the correct domain. [An article on Malwarebytes](https://redirect.viglink.com/?format=go&jsonp=vglnk_169642162365113&key=c1c7d488bb2df8a8b659d5d41634d304&libId=lnbplafq010023dg000ULba5vadv1&loc=https%3A%2F%2F9to5mac.com%2F2023%2F09%2F06%2Fmac-hit-by-atomic-stealer-malware-with-search-ads%2F&v=1&out=https%3A%2F%2Fwww.malwarebytes.com%2Fblog%2Fthreat-intelligence%2F2023%2F09%2Fatomic-macos-stealer-delivered-via-malvertising&ref=https%3A%2F%2Fwww.google.com%2F&title=Mac%20users%20hit%20by%20Atomic%20Stealer%20malware%20via%20malicious%20Google%20Search%20ads%20-%209to5Mac&txt=researchers%20at%20Malwarebytes) corroborates that what I’ve experienced is accurate, and the package is spread through ‘malvertising.’ To further that suspicion, the URL above contains this ‘&lpurl=https://www.notion.so/help/guides’ query parameter at the end. The “lpurl” was the one that was displayed on the Google Ad I had clicked on, which was a legitimate Notion URL before it redirected me to the compromised site.
+
+## What is the AMOS Stealer?
+
+The Atomic MacOS (AMOS) stealer is a sophisticated trojan horse virus which goes after your saved passwords, browser history/sessions and crypto wallets. It masquerades itself popular apps such Trading View, Notion, and Photoshop CC.
+
+AMOS is licensed for $1000/m. via a private telegram channel.
+
+![Telegram channel | source: [https://9to5mac.com/2023/04/28/atomic-macos-stealer-malware-steal-passwords/](https://9to5mac.com/2023/04/28/atomic-macos-stealer-malware-steal-passwords/)](https://cdn-images-1.medium.com/max/2000/0*PwbsngoN9M7EsWji)
+
+The [9-to-5 Mac article](https://9to5mac.com/2023/04/28/atomic-macos-stealer-malware-steal-passwords/) does a great job of illustrating everything possible with AMOS.
+
+## Stemming the flow of damage
+
+Knowing that I had been compromised, removing the virus wasn’t good enough. There were some extra steps I needed to do to minimise the damage.
+
+### Report the ad
+
+The first thing I needed to do was get Google to remove the Ad. To do this, I clicked on the ellipsis icon of the sponsored result.
+
+![](https://cdn-images-1.medium.com/max/2000/1*mmWq_lAuL32bNRQIZ_bvEg.png)
+
+Then reported the ad to Google
+
+![This is a legit ad, but it shows where to report](https://cdn-images-1.medium.com/max/2000/1*e_NdSa1kjkRpVwZj1-O3VQ.png)
+
+### Perform a whois and report abuse
+
+You can try reporting the malicious activity of a domain/server to its host by performing a whois lookup on [DomainTools](https://whois.domaintools.com/).
+
+![](https://cdn-images-1.medium.com/max/2000/1*8LFxtRehiR8b5d8kwd41nw.png)
+
+When sending an email to the registrar, I recommend using an anonymous email service such as [ProtonMail](https://proton.me/mail), as you can never be sure who is on the other side.
+
+### Change your passwords and enable TFA
+
+Luckily, I use 1Password to manage my passwords. This meant my passwords were encrypted at rest in the vaults. However, I reset them all without knowing what was potentially stored in my MacOS keychain or Chrome auto-fills. As an additional precaution, I added two-factor authentication on sites that supported it.
+
+## A note about Facebook…🤬
+
+I noticed that Facebook Ads had been created and users had been added to my accounts. I was flooded with emails like this.
+
+![](https://cdn-images-1.medium.com/max/2000/1*LCJ2VVZypHbRNZWL9PcjXQ.png)
+
+It wasn’t until I enabled TFA that the flow of adding users stopped, indicating that the active session included in the compromise still persisted despite changing all my passwords and resetting the sessions.
+
+The ads created were for a business in Vietnam, which is geographically about as far away from me as possible, and I’ve never had any previous interaction before or since. This fraudulent activity to Meta was met with this response nearly four weeks later.
+>  Thanks for contacting Meta.
+>  Because our records do not indicate suspicious activity on your account, we will be unable to refund your purchase in this case. When you completed your purchase, you agreed to our Terms and Conditions by clicking the ‘Place Order’ button. Our Payment Terms are always available at [http://www.facebook.com/payments_terms/](https://www.facebook.com/ix_communication_platform/link_click_redirect/?REDIRECT_URI=https%3A%2F%2Fwww.facebook.com%2Fpayments_terms%2F&data=ATO1WoYlhwxOgAJ-JSkSGOPB_ovQTkZvFROxANhITycbIa9c2fpkNfeWijPr5mfLv10t2WLPTy0voXN8Dadi2K5HGyw1LBTxbI7z_giPZhmLjueRSpR3mHsvIAk4870dIKgyhDcjmlplO1Bf0iosKtp4UEPQVojw9zlHH3VuAP4HmIY).
+>  If you feel the amount you were charged for is incorrect, please follow this form while logged into the account you advertise with: [https://www.facebook.com/help/contact/649167531904667](https://www.facebook.com/ix_communication_platform/link_click_redirect/?REDIRECT_URI=https%3A%2F%2Fwww.facebook.com%2Fhelp%2Fcontact%2F649167531904667&data=ATPGjfvcHOc-BriIc2lv97yvyXcCY5tYzzncoUT9-dNqraPi_JnJgYXiRkY85OAc0J3Bn1x9SIsUnx13w2e7PwhdTEt5kTHTmdeVNqVEm1xO2_NgTcOXIVfCW-2L2wDnBubniw1K_8Z4mpMK9sMseoKexUGsLX18rlC5wZdLbAyoFi0)
+>  You can also learn how to secure your account here: [https://www.facebook.com/help/203305893040179](https://www.facebook.com/ix_communication_platform/link_click_redirect/?REDIRECT_URI=https%3A%2F%2Fwww.facebook.com%2Fhelp%2F203305893040179&data=ATMGSUXIiGCOI5yztPhkJbhDm9KNonjqVIK_4tE-XqxhHXWKsd4E0eY9lxnZRwBYIfG6QzsOnWUqLLm_sZTJtHGRODCd9Ci5dPcbtyXndKbulnEt075nHjYRVndEJT5w_Yz2UwYVxsnf1m0XSCBywvvMiXulh6ap_uDaSKAD0QEO6io)
+>  Thank you for understanding,
+
+Unfortunately, they closed my request despite following up, and I had to go directly to my bank to resolve this issue.
+
+## Conclusion
+
+MacOS is definitely not without malware anymore. The AMOS Stealer is here, and it’s nasty. Users of Apple products need to be extra vigilant now to ensure that they remain malware-free. I consider myself quite tech-savvy, yet I still got stuck by this nastiness. There are a few precautions that I advise you to take that I am doing myself now:
+
+ 1. Double-check the URL of the site.
+
+ 2. If something doesn’t look right, don’t install it!
+
+ 3. Install a good AV (in this case, AVG or Avast)
+
+ 4. Keep your passwords in a dedicated manager that is encrypted at rest (I recommend using Bitwarden or 1Password).
+
+ 5. Turn on TFA.
+
+ 6. Lock down your Facebook account where possible by removing app access, saved credit card details, and ad accounts.
+
+ 7. Change away from Google and use another search engine.
+
+I hope this provides a good warning call for MacOS users, and if you use a Mac, you should think twice before clicking install.

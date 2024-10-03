@@ -1,0 +1,23 @@
+---
+title: "Upgrading my blog to Gatsby 5"
+publishedAt: "2022-11-16T18:39:03.583Z"
+summary: "Gatsby 5 came out last Tuesday and I’ve just completed the upgrade of my blog from Gatsby 4 to Gatsby 5. In the past, this process had been painful and I was left pulling out my hair (something I…"
+---
+
+Gatsby 5 came out last Tuesday and I’ve just completed the upgrade of my blog from Gatsby 4 to Gatsby 5. In the past, this process had been painful and I was left pulling out my hair (something I can’t afford to do — male pattern baldness is real!).
+
+You can see the results at [https://xavie.mirmon.co.uk](https://xavie.mirmon.co.uk).
+
+_If you are curious about the benefits of upgrading to Gatsby 5 check out my other blog post about_ [_Gatsby 5’s enhancements_](https://medium.com/xaviemirmon/gatsby-5-is-coming-fast-gets-faster-f515824dc515)_._
+
+However, this experience was much simpler than I expected. The upgrade guide is extensive and helped walk me through the different steps required to upgrade. Fortunately for me, I have built my site on top of `gatsby-theme-jodie` built by a Gatsby core maintainer [LekoArts](https://medium.com/u/dbc4d54987f4?source=post_page-----264158f1a525--------------------------------). This theme was already ready for Gatsby 5, so I only needed to update any customisations I’d made through shadowing.
+
+# A note on Gatsby Themes
+
+The more I work with Gatsby Themes and shadowing, the more I learn the intricate differences to the likes of contributed plugins/modules on CMS.’ Because we are essentially using Webpack to overlay files on top of one another the process of upgrading can look very different for you. I’ve found that there is extra effort required to update the shadowed files when an underlying file has changed compared to that of Drupal or WordPress. I was fortunate that the theme I use was updated quickly. However, your specific theme’s maintainer might take longer to push out an update so mileage may vary.
+
+# New Feature! Medium teasers
+
+Because this process was so quick, I decided to add a new feature which shows a grid of Medium articles on the homepage. This was built using `gatsby-source-medium` and the new `useStaticQuery` hooks approach.
+
+I also used IFTTT to trigger my Gatsby Cloud builds when I publish a new article. 🔥🔥🔥🔥

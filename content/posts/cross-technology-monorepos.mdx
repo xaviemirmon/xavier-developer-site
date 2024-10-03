@@ -1,0 +1,115 @@
+---
+title: "Cross technology monorepo’s"
+publishedAt: "2022-09-26T15:12:32.686Z"
+summary: "Having worked with React, Gatsby, and other JS frameworks, for the past few years, I’ve become quite accustomed to using monorepos. Whether it be Lerna or Yarn Workspaces, they are commonplace in JS…"
+---
+
+Having worked with React, Gatsby, and other JS frameworks, for the past few years, I’ve become quite accustomed to using monorepos. Whether it be Lerna or Yarn Workspaces, they are commonplace in JS but not very prevalent in PHP frameworks and I’ve not seen any examples in Drupal yet…
+
+# What is a monorepo?
+
+First off, you might be asking what a monorepo is. That is an excellent question. A monorepo is a single code repository, that releases many packages. The opposite is a “many-repo” where you have a single repo for each package.
+
+# Who uses monorepos?
+
+Monorepos are used across a plethora of different businesses including Symfony, Laravel, Meta, Alphabet, and Microsoft. It is claimed that Windows is actually the world’s largest monorepo currently in existence!
+
+# Should I use a monorepo?
+
+There are many arguments for and against monorepos. I’ve found that it really depends on your specific use case as to whether it is beneficial or not.
+
+Monorepos are great for managing multiple packages with shared APIs. Need to refactor one package? Easy! Just change your references elsewhere in the repo. Monorepos are also great in that you can share common tooling. Do you have multiple PHP packages that should share the same testing pipelines? Put them all in the same place. In my use case, it’s hugely advantageous to have a monorepo that can share scripts to provision microservices, test them and orchestrate them together.
+
+Having a monorepo is hugely advantageous for open-source projects or projects like Windows or Facebook that have a lot of interdependencies. They are all or nothing when it comes to cloning the code so good if you are wishing to restrict access to specific packages.
+
+# Sounds great — how come it’s not really used in PHP?
+
+Before we answer that, we need to look at where Monorepos are prevalent — the JS community. If we dig a bit deeper and compare package managers for JS (NPM) and PHP (Composer) there are two fundamental differences, NPM lets you publish without a repo whereas Composer requires it. Every Composer package needs a corresponding repo.
+
+# Enter \[READ-ONLY\] repos
+
+In order to get this working with Composer, you will need to create a series of “\[READ-ONLY\]” repos. In GitHub (or your GIT service/server), create a repo for each of your packages that can be synced to Composer. To sync I use the tool created by Fabien Potencier (the creator of Symfony) called [SplitSH Lite](https://github.com/splitsh/lite). This package combined with a [GitHub Action](https://github.com/acrobat/subtree-splitter) updates my package repos in real-time.
+
+# Project structure
+
+To manage my monorepo, I have the following folder structure which allows me to mix and match technologies best suited for the project:
+
+├── backend│ ├── packages│ └── starters├── docs├── frontend│ ├── deprecated-packages│ ├── packages│ └── starters└── scripts
+
+Key things to note — regardless of the technology used, I like having the following structure for my applications that live inside the monorepo.
+
+## Packages
+
+Packages are the modular pieces of code that should be separately installed.
+
+## Starters
+
+Starters are a collection of packages that are used together as a starting point for your application.
+
+## Deprecated Packages
+
+Sunsetted packages that may have been previously used but are no longer supported.
+
+In this example, my project has the following applications/tooling some with packages and services, others without:
+
+## Backend
+
+This is a Drupal web service with a MySQL DB. It contains packages which are custom Drupal modules, themes, profiles, etc. and starters which are differently composed website starter kits. I’ve used the [Composer Workspaces](https://github.com/tmdk/composer-workspaces-plugin) plugin to connect the packages and starters together
+
+## Docs
+
+This is a standalone Gatsby docs site.
+
+## Frontend
+
+This is a React/Gatsby application for static site generation for the frontend of the application. It contains packages which are the functionality around page building, design system, the admin UI etc. and starters which are differently composed website starter kits. I’ve used yarn workspaces to connect the packages and starters together
+
+## Scripts
+
+A standalone scripts repo for provisioning, testing, and development utilities.
+
+# In conclusion
+
+Monorepos greatly simplify development in the right context. With the correct tools, we can bring this to PHP libraries/frameworks and deliver truly composable experiences. With the setup outlined above different technologies aren’t a barrier and the tools that are best suited to the job can be used. I’m really excited to move forwards with this approach and join key players in the industry as I develop new tools and products.
+
+# Further reading
+
+[
+
+## The largest Git repo on the planet
+
+### It's been 3 months since I first wrote about our efforts to scale Git to extremely large projects and teams with an…
+
+devblogs.microsoft.com
+
+](https://devblogs.microsoft.com/bharry/the-largest-git-repo-on-the-planet/?source=post_page-----89bdae57f221--------------------------------)
+
+[
+
+## What is monorepo? (and should you use it?) - Semaphore
+
+### Monorepos can foster rapid development workflows. In this post, we'll examine if they are the right fit for you and…
+
+semaphoreci.com
+
+](https://semaphoreci.com/blog/what-is-monorepo?source=post_page-----89bdae57f221--------------------------------)
+
+[
+
+## Monorepo: please do!
+
+### You should choose a monorepo because the default behavior it encourages in your teams is visibility and shared…
+
+medium.com
+
+](https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70?source=post_page-----89bdae57f221--------------------------------)
+
+[
+
+## Building large scale react applications in a monorepo
+
+### A monorepo can be described as a repository that contains more than one logical project. These projects can be…
+
+medium.com
+
+](https://medium.com/@luisvieira_gmr/building-large-scale-react-applications-in-a-monorepo-91cd4637c131?source=post_page-----89bdae57f221--------------------------------)

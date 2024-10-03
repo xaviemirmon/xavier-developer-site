@@ -1,0 +1,14 @@
+.section {
+    margin-top: 32px;
+}
+
+.year {
+    font-weight: 700;
+}
+
+.list {
+    list-style-type: none;
+    & > li {
+        padding: 8px 0;
+    }
+}

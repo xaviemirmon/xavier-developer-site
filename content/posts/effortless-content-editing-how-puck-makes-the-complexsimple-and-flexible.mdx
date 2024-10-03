@@ -1,0 +1,73 @@
+---
+title: "Effortless content editing: how Puck makes the complex—simple and flexible"
+publishedAt: "2024-04-03T13:19:39.021Z"
+summary: "Over the past few years, web development has accelerated like never before. I witnessed first-hand the impacts of COVID on businesses and how digital strategies were required to adapt overnight. Once…"
+---
+
+Over the past few years, web development has accelerated like never before. I witnessed first-hand the impacts of COVID on businesses and how digital strategies were required to adapt overnight. Once thriving, brick-and-mortar operations needed to pivot overnight and move to digital. The goal became enabling our customer's websites, allowing them to pivot at a moment's notice and not sacrifice quality.
+
+Around five years ago, solutions emerged to bridge this gap for SMEs and enterprises, such as Acquia Site Studio (which I’m most familiar with), Elementor, Builder.io, and React Bricks, to name a few. As great as all these solutions are and the speed of launch is incredible ([my former team built a site that would’ve taken three months in 10 days](https://www.acquia.com/resources/case-studies/15below)), they all appear to suffer from a crucial drawback. To operate, they all require a subscription and use a black-box API, which creates a level of business risk.
+
+### Enter Puck…
+
+![](https://cdn-images-1.medium.com/max/2400/1*VoITcCuP6-UYbBih2SFZEA.png)
+
+In September 2023, this all changed with a new open-source project called Puck. Puck is a react-based page-building solution that allows you to bring your first-party components into a drag-and-drop environment. It's an absolute game-changer!
+
+This quote from simow sums it up nicely
+
+> Wow, I’ve seen so many of these kinds of things over the years but this one is really special: extremely intuitive design, really powerful and flexible, and MIT licensed too. Super impressed.
+> — simonw
+> [https://news.ycombinator.com/item?id=37391848](https://news.ycombinator.com/item?id=37391848)
+
+## Introduction to Puck
+
+Adding Puck to your React app opens a new world of content editing possibilities. Straightaway, you have a simple, easy-to-use UI that intuitively lets you drag and drop, rearrange, and edit your React components. It provides an editorial layer that can be built with consistencies in mind. The engineering team can build the UI to interact similarly even if multiple backend systems are used. So, non-technical only have to learn and be onboarded once without needing to understand the minutiae of your business's backend systems.
+
+Behind the scenes, Puck has a robust JSON model, which makes integration to and from other content management systems incredibly straightforward. Puck leverages the core React functionality and first-party components, meaning existing libraries and design systems are easily used without much additional effort. An added advantage to this approach is simplicity — without the additional API layer, there is no need for complex data migrations. All you’re required to do is map the data to your React components.
+
+Puck also has a customisable field architecture, a robust plugin system, and a composable approach for the UI and behaviours. It’s very modular and can be adapted easily to a bespoke page-building experience. For example, I’ve been leading a project using Puck as an alternative to Storybook for building a design system.
+
+As they say, “actions speak louder than words,” here’s a quick demo.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4gILnWIOQq4?si=c_V4y7z84cpsNGON" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+The demo above shows some of the main features of Puck:
+
+- Editing the page title
+
+- The SEO heading hierarchy warning
+
+- Dragging and creating components on the page
+
+- Editing components
+
+- Dragging and creating a grid layout
+
+- Publishing changes
+
+- Undo/Redo
+
+If this has piqued your interest, there are some other pages which are worth delving into further to understand Puck:
+[**Building a React Page Builder: An Introduction to Puck**
+*Puck enables you to create your own page builder and embed it directly inside your React application. Tell Puck what…*measured.co](https://measured.co/blog/building-a-react-page-builder-an-introduction-to-puck)
+[**Puck - The open-source visual editor for React**
+*Puck empowers developers to build amazing visual editing experiences into their own React applications, powering the…*puckeditor.com](https://puckeditor.com/)
+[**Puck Editing Demo**
+demo.puckeditor.com](https://demo.puckeditor.com/edit)
+
+## Why low-code?
+
+Some of you might be asking. What’s the big deal about low-code, and why am I advocating it? Low code makes editing more accessible to non-technical users such as marketers and CMS editors. It gives them access to building blocks, enabling them to build website pages quickly.
+
+Low-code website building has been around for a while, with Squarespace, Wix, and Weebly providing massive flexibility. However, this concept has taken longer to become available to more significant sites and platforms (for SMEs and enterprises). Bigger businesses require more governance and UI consistency, using a pre-built design system or adhering to specific branding guidelines. The challenge has been how your web platform provides enough flexibility not to stunt non-technical users' creativity while maintaining your brand’s integrity.
+
+When discussing low-code with others, I am often asked if low-code eliminates the need for developers. Having worked with low-code for nearly half a decade now, I can say that while it’s disruptive and transformative, developers are very much required to continue to build and evolve these low-code products. More often than not, it allows developers to expand their focus into new territories and the platform as a whole rather than getting bogged down in the little details.
+
+## Conclusion
+
+Moving to a modular/component-based development approach makes your codebase more flexible and reuseable. Transitioning away from strictly defined templates to using reusable components is far more efficient, making more code sharable and reusable. Expanding this into a design system and platform, the scale compounds the positive ROI. Reducing the barrier to entry of your tooling means more of your teams can be involved earlier in a project, and your organisation can go further quicker.
+
+Puck is a very exciting project because it offers new opportunities that have never been offered before. Previously, adding low code to your project provided benefits, but it had limitations around licencing and data models, which were deal breakers for many businesses.
+
+If this is interesting to you and your business, please reach out to me [on LinkedIn](https://www.linkedin.com/in/xavier-mirabelli-montan-5633203b/). I’d love to chat about how I can help!

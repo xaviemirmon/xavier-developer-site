@@ -1,0 +1,95 @@
+---
+title: "Gatsby 5 is coming—fast gets faster!"
+publishedAt: "2022-11-03T16:00:45.955Z"
+summary: "It’s official Gatsby 5 is dropping on November 8th 2022 and I cannot wait! As part of this update, there are many new fixes and improvements (which you can learn all about at https://gatsby.dev/5)…"
+---
+
+It’s official Gatsby 5 is dropping on November 8th 2022 and I cannot wait! As part of this update, there are many new fixes and improvements (which you can learn all about at [https://gatsby.dev/5)](<https://gatsby.dev/5)>). However, here are a few that I am most excited about.
+
+# Slices API
+
+With the Slices API, you can now create components that are shared across multiple pages, e.g. headers and footers as a “Slice.” It’s similar to the Pages API, but for shared global components. This is advantageous for two main reasons. 1) When your site is building, rather than needing to build multiple instances of these components it does it once and splices that bundle in where required. 2) If you change one of your “Slices,” the slice itself is the only item that needs to be rebuilt as opposed to all of the pages that contain that component.
+
+More info:
+
+[
+
+## Using Slices | Gatsby
+
+### Support for the Gatsby Slice API was added in gatsby@5.0.0. To further the improvements seen by Incremental Builds…
+
+v5.gatsbyjs.com
+
+](https://v5.gatsbyjs.com/docs/how-to/performance/using-slices/?source=post_page-----f515824dc515--------------------------------)
+
+[
+
+## The Gatsby Slice API: High Precision Incremental Builds | Gatsby
+
+### Serving fully-rendered, static HTML files has made a few trips in and out of the web development sphere over the past…
+
+v5.gatsbyjs.com
+
+](https://v5.gatsbyjs.com/blog/gatsby-slice-api?source=post_page-----f515824dc515--------------------------------)
+
+# Partial Hydration (beta)
+
+Currently, all pages rendered by Gatsby are “fully hydrated.” This means that static and highly interactive components are all treated equally. Without partial hydration, there is no way to instruct your site to parse or defer behaviours to the client which can lead to larger bundle sizes and time to interactive. Implementing partial hydration keeps your sites super quick!
+
+More info:
+
+[
+
+## Partial Hydration (Beta) Explained | Gatsby
+
+### There's been a lot of content around Gatsby 5, and we can't help but be excited. Today I want to deep dive into a beta…
+
+www.gatsbyjs.com
+
+](https://www.gatsbyjs.com/blog/partial-hydration-beta-explained?source=post_page-----f515824dc515--------------------------------)
+
+[
+
+## Partial Hydration | Gatsby
+
+### Partial Hydration enables you to selectively add interactivity to your otherwise completly static app. This results in…
+
+v5.gatsbyjs.com
+
+](https://v5.gatsbyjs.com/docs/conceptual/partial-hydration/?source=post_page-----f515824dc515--------------------------------)
+
+# Head API
+
+The “Head API” replaces `react-helmet` when adding SEO tags to the header. This API provides enhanced performance and de-duplication over `react-helmet`. It’s also incredibly simple to get started with, just add a `Head` function in your page templates to use this functionality.
+
+More info:
+
+[
+
+## Introducing the Gatsby Head API | Gatsby
+
+### To ensure that websites are found by the intended users, search engines inspect websites for specific bits of metadata…
+
+www.gatsbyjs.com
+
+](https://www.gatsbyjs.com/blog/introducing-the-gatsby-head-api/?source=post_page-----f515824dc515--------------------------------)
+
+[
+
+## Gatsby Head API | Gatsby
+
+### Support for the Gatsby Head API was added in gatsby@4.19.0. Gatsby includes a built-in Head export that allows you to…
+
+www.gatsbyjs.com
+
+](https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/?source=post_page-----f515824dc515--------------------------------)
+
+# GraphiQL v2
+
+This is a small but exciting change. Gatsby v5 now includes GraphiQL v2 which contains some much-needed UI enhancements. These enhancements include tabs, dark mode and more.
+
+# Wrapping up
+
+There are a lot more updates that I’ve not covered in this post such as new starters, the Script API, React 18, etc. You can find out more details in the blog post from Gatsby [here](https://www.gatsbyjs.com/gatsby-5/). V5 doesn’t seem to be as vast a product announcement as v4 but I see that as a positive. It’s clear to me that in this update a lot more care and attention has gone into migration paths and upgrades showing that Gatsby is a much more formidable product.
+
+_I am curious to know your thoughts. What are you most excited about with this release? Add it in the comments below._

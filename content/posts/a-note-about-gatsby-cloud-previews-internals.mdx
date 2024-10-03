@@ -1,0 +1,12 @@
+---
+title: "A note about Gatsby Cloud Preview’s internals"
+publishedAt: "2022-01-21T17:49:51.032Z"
+summary: "It’s been a while since I’ve used Gatsby Cloud Preview for reviewing my sites. I recently ran into an issue that caught me a bit off guard. My site was working flawlessly on my local setup using…"
+---
+Through some debugging (and it was also confirmed on a Gatsby webinar), I found out that **Gatsby Cloud Preview is no longer powered by the** `**gatsby develop**` **command but an optimised version of** `**gatsby build**` **and** `**gatsby serve**`**.**
+
+When I ran `gatsby build && gatsby serve` I was able to see there were some issues with my SSR pages needing the `window` when being compiled and because the page was being SSR’d the `window` wasn’t available.
+
+More on that [here](https://medium.com/@xaviemirmon/using-window-with-gatsbys-runtime-ssr-mode-ab6a6d42e20a)
+
+If you’re using Gatsby Cloud and notice odd behaviours that

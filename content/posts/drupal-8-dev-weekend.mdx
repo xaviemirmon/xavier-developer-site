@@ -1,0 +1,62 @@
+---
+title: "Drupal 8 Dev Weekend"
+publishedAt: "2017-03-24T15:01:22.330Z"
+summary: "During the first weekend of February 2015, the miggle team embarked on an exploration of Drupal 8 (D8). Getting started was a bit slow going. We all started with great ambitions of doing a lot of…"
+---
+
+# Saturday
+
+Getting started was a bit slow going. We all started with great ambitions of doing a lot of really complex things that we do on a day-to-day basis with Drupal 7 (D7). Some of us got on really well with our projects but some of us found Drupal 8 under the hood has a quiet high learning curve. Because the architecture of D8 is quite different than D7, quite a bit of Saturday morning was consumed by downloading and installing miggle’s own [VLAD (Vagrant LAMP Ansible Drupal)](https://github.com/miggle/Migl-Phing-Drupal) box to develop with locally. Steve and myself decided to tackle the challenge of CI ([continuous integration](http://en.wikipedia.org/wiki/Continuous_integration)) using the CMI ([configuration management interface](https://www.drupal.org/documentation/administer/config)). Because miggle use [Features](https://www.drupal.org/project/features) as a standard proceedure to export configurations across environments, I thought it was going to be quite straightforward with the new CMI but I actually found it quite a challenge. To get through these challenges Albert Albala has written a very good how-to which you can find on [http://dcycleproject.org/blog/68/approach-code-driven-development-drupal-8](http://dcycleproject.org/blog/68/approach-code-driven-development-drupal-8). This provided a really good starting point however we found that some bits weren’t up-to-date as D8 is continously evolving. After a debrief of what we learned that day, it was, in miggle fashion, time to be off to the pub!
+
+# Sunday
+
+I had a lot more successes on the Sunday. I decided to create my blog in D8 and found it a very pleasant expirience. TWIG is amazingly quick to use and I was able to get the majority of the themeing for this blog done in just hours! The .info file is now a YAML file.
+```
+name: White Sky Web  
+type: theme  
+description: 'White Sky Web theme based on Classy'  
+core: 8.x  
+package: custom  
+base theme: classy  
+libraries:
+
+- whiteskyweb/baseregions:  
+  menu: Menu  
+  header: Header  
+  content: Content  
+  sidebar_first: First sidebar  
+  footer: Footer
+```
+In this instance I have implmented a second THEME.libraries.yml to define all CSS and JS
+```
+base:  
+ version: VERSION  
+ css:  
+ theme:  
+ assets/css/bootstrap.css: {}  
+ assets/css/font-awesome.min.css: {}  
+ assets/css/main.css: {}  
+ //cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css: {}  
+ js:  
+ assets/js/classie.js: {}  
+ assets/js/bootstrap.min.js: {}  
+ assets/js/smoothscroll.js: {}  
+ //cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js: {}  
+ assets/js/main.js: {}  
+ dependencies:  
+ - core/jquery
+```
+You can use the .theme file D8’s version of the template.php file to pass variables to TWIG
+
+```<?php/\*\*  
+\* Add a variable to TWIG  
+\*/  
+function whiteskyweb\_preprocess\_html(&$variables) {  
+  $variables\['profile\_img'\] = '/' . drupal\_get\_path('theme','whiteskyweb') . '/assets/img/profile.jpg';  
+}```
+
+# Wrap-up
+
+Drupal 8 is a great improvement on Drupal 7 when you install from it scratch. I found TWIG really quick for themeing and I love the new ‘Quick Edit’ inline editing. For anything other than small site/blogs and I can’t see it being ready for the type of sites we are buillding at miggle am building within the next 1–2 years because the contrib modules just aren’t there. Contrib modules like pathauto still need to be developed for the prime time.
+
+Check out more of what we got up to on YouTube.
