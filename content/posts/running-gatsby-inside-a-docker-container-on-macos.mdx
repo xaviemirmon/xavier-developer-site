@@ -26,6 +26,7 @@ Voilà—our site now loads in Docker! However, there is a massive problem when 
 
 Because we are using NFS, Webpack doesn’t know when to update our files because it’s waiting on the FSNotify event but remember NFS doesn't support this. Instead, we need to set webpack to poll for these changes to your .js, .jsx, .ts, .tsx, etc. files based on a set number of milliseconds. This is quite easy we just need to add the following config into our `gatsby-node.js`:
 
+```
 _exports_.onCreateWebpackConfig = ({ _actions_ }) => {  
  _actions_.setWebpackConfig({  
  watchOptions: {  
@@ -35,6 +36,7 @@ _exports_.onCreateWebpackConfig = ({ _actions_ }) => {
  },  
  })  
 }
+```
 
 If like me your site is reliant on .md or .mdx files, the changes above won’t help and pickup changes to those files.
 
