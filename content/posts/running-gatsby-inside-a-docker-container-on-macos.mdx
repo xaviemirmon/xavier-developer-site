@@ -54,6 +54,7 @@ Gatsby uses Hot Module Reloading (HMR) to send the updates from our site to the 
 
 I hope this guide has helped you. If like me you’re using Docksal, the following info adding this (in tandem with the changes to your `gatsby-node.js`) to your `.docksal/docksal.yml` file you be up and running quickly!
 
+```
 services:  
  gatsby_site:  
  hostname: gatsby  
@@ -73,3 +74,4 @@ services:
   command: \["bash", "-lc", "yarn develop -H 0.0.0.0 -p 3000"\]  
   depends_on:
 - cli
+```
