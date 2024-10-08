@@ -18,6 +18,7 @@ Under the hood, Gatsby will find page templates containing the getServerData() a
 
 It’s to fix as outlined [here](https://www.gatsbyjs.com/docs/debugging-html-builds/#how-to-check-if-window-is-defined). Or my preferred option is a simple short-circuit.
 
+```
     const isBrowser = typeof window !== "undefined"
 
     export default function MyComponent() {
@@ -29,6 +30,7 @@ It’s to fix as outlined [here](https://www.gatsbyjs.com/docs/debugging-html-bu
     return <div>Am I logged in? {loggedIn}</div>
 
     }
+``` 
 
 I’ve raised a Github issue to help make the docs a bit clearer but for now the solution above does the trick!
 [**New SSR Render Mode Documentation Unclear · Issue #34519 · gatsbyjs/gatsby**
