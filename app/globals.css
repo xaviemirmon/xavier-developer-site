@@ -22,11 +22,13 @@ body {
 h1 {
   font-size: 64px;
   font-weight: 700;
+
 }
 
 h2 {
   font-size: 40px;
   font-weight: 700;
+ 
 }
 
 h3 {
@@ -46,9 +48,7 @@ ol {
 
 .container {
   padding: 0 80px;
-  @media screen and  (max-width: 768px) {
-    padding: 0 16px;
-  }
+
 }
 
 body {
@@ -85,6 +85,15 @@ footer.container {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 40px;
+  }
+  .container {
+    padding: 0 24px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
