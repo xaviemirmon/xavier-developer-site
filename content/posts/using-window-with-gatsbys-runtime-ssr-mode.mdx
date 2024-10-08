@@ -1,0 +1,35 @@
+---
+title: "Using “window” with Gatsby’s runtime SSR mode"
+publishedAt: "2022-01-24T10:00:55.239Z"
+summary: "I’ve been working with Gatsby v4 and it’s been awesome! For those of you who aren’t already aware, Gatsby v4 introduces two exciting new render modes in addition to the already powerful Static Site…"
+---
+
+![](https://cdn-images-1.medium.com/max/3000/1*OD8BTN6gD9QRq1H5aKJMfg.jpeg)
+
+I’ve been working with Gatsby v4 and it’s been awesome! For those of you who aren’t already aware, Gatsby v4 [introduces two exciting new render modes](https://www.gatsbyjs.com/docs/conceptual/rendering-options/) in addition to the already powerful Static Site Generation (SSG), Deferred Static Generation (DSG), and Server Side Rendering (SSR).
+
+DSG is great to decrease your build times if you have a lot of pages that aren’t receiving much traffic useful for your SEO rankings.
+
+SSR is something I’ve been playing around with as it is perfect for fetching and shaping data in real-time without impacting the client’s browser performance. This is great if you have a dashboard or a page builder that requires a fresh initial data fetch on load.
+
+Under the hood, Gatsby will find page templates containing the getServerData() and render them server-side when the page is requested. This functionality behaves like the SSR that happens at build time but at runtime.
+
+**If any of the code used in your page template relies on the browser e.g. window then you will need do a check that it’s available.** Otherwise, you will get a bunch of nasty “Window is undefined” errors during the gatsby serve process. To add to the confusion, they won’t be present on gatsby develop so it’s only when you are deploying that your site will stop working — boo!
+
+It’s to fix as outlined [here](https://www.gatsbyjs.com/docs/debugging-html-builds/#how-to-check-if-window-is-defined). Or my preferred option is a simple short-circuit.
+
+    const isBrowser = typeof window !== "undefined"
+
+    export default function MyComponent() {
+
+    let loggedIn = false
+
+    isBrowser && window.localstorage.getItem("isLoggedIn") === "true"
+
+    return <div>Am I logged in? {loggedIn}</div>
+
+    }
+
+I’ve raised a Github issue to help make the docs a bit clearer but for now the solution above does the trick!
+[**New SSR Render Mode Documentation Unclear · Issue #34519 · gatsbyjs/gatsby**
+*Preliminary Checks This issue is not a duplicate. Before opening a new issue, please search existing issues…*github.com](https://github.com/gatsbyjs/gatsby/issues/34519)

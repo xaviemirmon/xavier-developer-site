@@ -149,11 +149,16 @@
   },
   "active": "d97a5d3dcf078772",
   "lastOpenFiles": [
-    "projects/pagebuilder.mdx",
-    "posts/drupalcamp-brighton-2016-learns.mdx",
     "posts/drupal-8-dev-weekend.mdx",
-    "posts/cross-technology-monorepos.mdx",
+    "posts/think-nation-building-the-future-of-drupal.mdx",
+    "posts/drupalcamp-brighton-2016-learns.mdx",
+    "posts/my-micro-lifestyle.mdx",
+    "posts/what-does-a-cms-need-to-be-in-2018.mdx",
+    "posts/kews-little-pigs-farm.mdx",
+    "posts/postgresql-vs-mysql-for-drupal-8.mdx",
+    "posts/safely-de-duping-files-in-drupal.mdx",
+    "posts/getting-to-grips-with-platformsh-workers-on-your-drupal-site.mdx",
     "posts/call-tracking-a-must-for-digital-marketers.mdx",
-    "posts/a-note-about-gatsby-cloud-previews-internals.mdx"
+    "posts/the-start-of-a-new-journey.mdx"
   ]
 }

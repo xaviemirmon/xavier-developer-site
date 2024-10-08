@@ -1,0 +1,79 @@
+---
+title: "Running Gatsby inside a Docker® Container on macOS"
+publishedAt: "2022-05-17T11:00:05.399Z"
+summary: "If like me, you want to run a Gatsby site using “develop” mode inside a Docker® container on macOS, there are a few things that you need to do first for it to run as expected. macOS has historically…"
+---
+![](https://cdn-images-1.medium.com/max/6000/1*cmrmbt0XmnfQhNRIZj4tNg.png)
+
+If like me, you want to run a Gatsby site using “develop” mode inside a Docker® container on macOS, there are a few things that you need to do first for it to run as expected.
+
+## Why is any of this necessary?
+
+macOS has historically been plagued with performance issues surrounding mounting local filesystems into the containers. The best compromise (and it certainly is a compromise) is to mount your local filesystem as an NFS volume. Doing so improves performance quite a bit over the traditional BIND mount but comes with a caveat. NFS on macOS doesn’t support fsevents. This isn’t a problem for most applications, but when using Gatsby, it’s reliant on fsevents to notify of any changes.
+
+Docksal which I am using for local development has [a great article](https://docs.docksal.io/core/volumes/#overview) that explains the different mount types across OS’ and the compromises/advantages of each.
+
+## Telling Gatsby it’s in a Docker® environment
+
+First off, we need to let Gatsby know that it’s being run inside a container and not just on the host machine as it’s expecting. We need to add the host -h parameter to our startup command to do this and set it to 0.0.0.0. For me this is:
+
+```yarn develop -h 0.0.0.0```
+
+My container isn’t exposing Gatsby’s default port, 8000, but rather 3000. I need to add a port parameter -p to my command for this to be recognised. My final command looks like this:
+
+```yarn develop -h 0.0.0.0 -p 3000```
+
+Voilà—our site now loads in Docker! However, there is a massive problem when we update our files nothing updates 😞.
+
+## Getting Hot Reloads to work
+
+Because we are using NFS, Webpack doesn’t know when to update our files because it’s waiting on the FSNotify event but remember NFS doesn't support this. Instead, we need to set webpack to poll for these changes to your .js, .jsx, .ts, .tsx, etc. files based on a set number of milliseconds. This is quite easy we just need to add the following config into our gatsby-node.js:
+
+```
+    *exports*.onCreateWebpackConfig = ({ *actions *}) => {
+      *actions*.setWebpackConfig({
+        watchOptions: {
+          aggregateTimeout: 200,
+          poll: 1000,
+          ignored: '**/node_modules',
+        },
+      })
+    }
+```
+
+If like me your site is reliant on .md or .mdx files, the changes above won’t help and pickup changes to those files.
+
+Fear not! the workaround to this is quite easy. The plugins can use Chokidar polling you just need to enable it. The easiest way to do this set the CHOKIDAR_USEPOLLING=true environment variable. Now when we make changes, Gatsby will pick them up and rebuild.
+
+Finally, we need to configure our site to send these updates to our browser.
+
+## Notifying our browser of the HMR updates
+
+Gatsby uses Hot Module Reloading (HMR) to send the updates from our site to the browser over a socket connection. By default, this is done by exposing a connection over a random port. However, now that our site is running in a container we need to make this predictable. First, we need our container to expose another port, not in use (e.g 5001). Then, we need to add this port as an environment variable INTERNAL_STATUS_PORT=5001
+
+**That’s it! Now if we restart our site everything will behave as expected inside a Docker® container — yay!**
+
+## Wrapping it all up together on Docksal
+
+I hope this guide has helped you. If like me you’re using Docksal, the following info adding this (in tandem with the changes to your gatsby-node.js) to your .docksal/docksal.yml file you be up and running quickly!
+
+```
+    services:
+      gatsby_site:
+        hostname: gatsby
+        extends:
+          file: ${HOME}/.docksal/stacks/services.yml
+          service: cli
+        labels:
+          - io.docksal.virtual-host=${VIRTUAL_HOST}
+          - io.docksal.virtual-port=3000
+        ports:
+          - "5001:5001"
+        environment:
+          - INTERNAL_STATUS_PORT=5001
+          - CHOKIDAR_USEPOLLING=true
+        working_dir: /var/www
+        command: ["bash", "-lc", "yarn develop -H 0.0.0.0 -p 3000"]
+        depends_on:
+          - cli
+```
