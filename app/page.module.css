@@ -47,11 +47,15 @@
 
 .projects {
   background-color: white;
+  
   padding: 24px 80px;
   margin-bottom: 48px;
   border-top: 1px solid #e7dbd2;
   border-bottom: 1px solid #e7dbd2;
   width: 100vw;
+  @media screen and  (max-width: 768px) {
+    padding: 24px;
+  }
   .carousel {
     padding: 24px 0;
     position: relative;
@@ -220,7 +224,7 @@ a.secondary {
 
 @media (max-width: 768px) {
   .page {
-    padding: 32px;
+    padding: 16px;
     padding-bottom: 80px;
   }
 
