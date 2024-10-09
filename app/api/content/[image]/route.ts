@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 // This function serves images dynamically from the 'content' folder.
-export async function GET(req) {
+export async function GET(req: Request) {
     const { pathname } = new URL(req.url)
 
     const imageFilename = pathname.split("/").slice(-1)[0] 
@@ -11,7 +11,6 @@ export async function GET(req) {
   // Path to the image in the 'content' folder at the project root
   const imagePath = path.join('./content', imageFilename);
 
-  console.log(imagePath, imageFilename)
   try {
     // Check if the image file exists
     if (fs.existsSync(imagePath)) {
