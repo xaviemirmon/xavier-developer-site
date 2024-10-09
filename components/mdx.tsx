@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
+import NextImage from "next/image";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import React from "react";
+import React, { ReactNode } from "react";
 import { UrlObject } from "url";
 import {
   PlaceholderValue,
@@ -86,7 +86,7 @@ function CustomLink(props: CustomLinkProps) {
   );
 }
 
-type RoundedImageProps = React.JSX.IntrinsicAttributes &
+type ImageProps = React.JSX.IntrinsicAttributes &
   Omit<
     React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
     "ref" | "height" | "width" | "loading" | "alt" | "src" | "srcSet"
@@ -112,8 +112,20 @@ type RoundedImageProps = React.JSX.IntrinsicAttributes &
     lazyRoot?: string | undefined;
   } & React.RefAttributes<HTMLImageElement | null>;
 
-function RoundedImage(props: RoundedImageProps) {
-  return <Image className="rounded-lg" {...props} />;
+function Image(props: ImageProps) {
+  // Destructure src from props
+  const { src, ...rest } = props;
+
+  // Check if src starts with '../' and replace with '/'
+  const updatedSrc = typeof src === 'string' && src.startsWith('../') ? src.replace('../', '/api/content/') : src;
+  return <div style={{width: '90vw', height: 'auto', minHeight: '500px', position:"relative"}}><NextImage fill {...rest}
+  src={updatedSrc}
+  objectFit="contain"
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/></div>;
+}
+
+function Paragraph({children}: {children: ReactNode}) {
+  return typeof children === 'string' ? <p>{children}</p> : children
 }
 
 // Updated Code component to handle optional children and ReactNode
@@ -171,10 +183,11 @@ const components = {
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  Image: RoundedImage,
+  img: Image,
   a: CustomLink,
   code: Code,
   Table,
+  p: Paragraph,
 };
 
 export function CustomMDX(props: React.JSX.IntrinsicAttributes & MDXRemoteProps) {
