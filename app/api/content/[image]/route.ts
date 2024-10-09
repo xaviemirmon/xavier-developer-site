@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     const imageFilename = pathname.split("/").slice(-1)[0] 
 
   // Path to the image in the 'content' folder at the project root
-  const imagePath = path.join('./content', imageFilename);
+  const imagePath = path.join(process.cwd(), 'content', imageFilename);
 
   try {
     // Check if the image file exists
