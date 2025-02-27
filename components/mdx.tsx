@@ -236,7 +236,6 @@ export function CustomMDX(
   return (
     <MDXRemote
       {...props}
-      //@ts-expect-error: The types for components are not fully compatible with the MDXRemote type.
       components={{ ...components, ...(props.components || {}) }}
     />
   );
