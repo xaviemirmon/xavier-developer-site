@@ -9,19 +9,36 @@ import {
   OnLoadingComplete,
 } from "next/dist/shared/lib/get-img-props";
 
-
 // Define a more specific type for table rows
-type TableRow = (string | number | bigint | boolean | React.ReactNode | null | undefined)[];
+type TableRow = (
+  | string
+  | number
+  | bigint
+  | boolean
+  | React.ReactNode
+  | null
+  | undefined
+)[];
 
 type TableProps = {
   data: {
-    headers: (string | number | bigint | boolean | React.ReactNode | null | undefined)[];
+    headers: (
+      | string
+      | number
+      | bigint
+      | boolean
+      | React.ReactNode
+      | null
+      | undefined
+    )[];
     rows: TableRow[]; // Use TableRow type here
   };
 };
 
 function Table({ data }: TableProps): React.JSX.Element {
-  const headers = data.headers.map((header, index) => <th key={index}>{header}</th>);
+  const headers = data.headers.map((header, index) => (
+    <th key={index}>{header}</th>
+  ));
   const rows = data.rows.map((row, index) => (
     <tr key={index}>
       {row.map((cell, cellIndex) => (
@@ -41,10 +58,7 @@ function Table({ data }: TableProps): React.JSX.Element {
 }
 
 type CustomLinkProps = React.JSX.IntrinsicAttributes &
-  Omit<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    "href"
-  > & {
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
     href?: string | UrlObject;
     as?: string | UrlObject;
     replace?: boolean;
@@ -80,7 +94,12 @@ function CustomLink(props: CustomLinkProps) {
   }
 
   return (
-    <a target="_blank" rel="noopener noreferrer" {...rest} href={href as string}>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      {...rest}
+      href={href as string}
+    >
       {props.children}
     </a>
   );
@@ -88,7 +107,10 @@ function CustomLink(props: CustomLinkProps) {
 
 type ImageProps = React.JSX.IntrinsicAttributes &
   Omit<
-    React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
+    React.DetailedHTMLProps<
+      React.ImgHTMLAttributes<HTMLImageElement>,
+      HTMLImageElement
+    >,
     "ref" | "height" | "width" | "loading" | "alt" | "src" | "srcSet"
   > & {
     src: string | import("next/dist/shared/lib/get-img-props").StaticImport;
@@ -117,25 +139,43 @@ function Image(props: ImageProps) {
   const { src, ...rest } = props;
 
   // Check if src starts with '../' and replace with '/'
-  const updatedSrc = typeof src === 'string' && src.startsWith('../') ? src.replace('../', '/api/content/') : src;
-  return <div style={{width: '90vw', height: 'auto', minHeight: '500px', position:"relative"}}><NextImage fill {...rest}
-  src={updatedSrc}
-  objectFit="contain"
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/></div>;
+  const updatedSrc =
+    typeof src === "string" && src.startsWith("../")
+      ? src.replace("../", "/api/content/")
+      : src;
+  return (
+    <div
+      style={{
+        width: "90vw",
+        height: "auto",
+        minHeight: "500px",
+        position: "relative",
+      }}
+    >
+      <NextImage
+        fill
+        {...rest}
+        src={updatedSrc}
+        objectFit="contain"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      />
+    </div>
+  );
 }
 
-function Paragraph({children}: {children: ReactNode}) {
-  return typeof children === 'string' ? <p>{children}</p> : children
+function Paragraph({ children }: { children: ReactNode }) {
+  return typeof children === "string" ? <p>{children}</p> : children;
 }
 
 // Updated Code component to handle optional children and ReactNode
 type CodeProps = React.HTMLAttributes<HTMLElement> & {
-  children?: React.ReactNode;  // Make children optional
+  children?: React.ReactNode; // Make children optional
 };
 
 function Code({ children, ...props }: CodeProps): React.JSX.Element {
   // Safely convert children to string if it's not a string, or handle undefined
-  const codeString = typeof children === 'string' ? children : String(children ?? '');
+  const codeString =
+    typeof children === "string" ? children : String(children ?? "");
   const codeHTML = highlight(codeString);
 
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
@@ -167,7 +207,7 @@ function createHeading(level: number) {
           className: "anchor",
         }),
       ],
-      children
+      children,
     );
   };
 
@@ -190,7 +230,9 @@ const components = {
   p: Paragraph,
 };
 
-export function CustomMDX(props: React.JSX.IntrinsicAttributes & MDXRemoteProps) {
+export function CustomMDX(
+  props: React.JSX.IntrinsicAttributes & MDXRemoteProps,
+) {
   return (
     <MDXRemote
       {...props}
