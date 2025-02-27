@@ -22,14 +22,18 @@ export function BlogPosts() {
           <div key={year}>
             <p className={`${styles.year}`}>{year}</p>
             <ul className={`${styles.list}`}>
-              {groupedPosts[year].map((post: BlogPost) => (
-                <li key={post.slug}>
-                  <Link href={`/blog/${post.slug}`}>
-                    {post.metadata.title} -{" "}
-                    {formatDate(post.metadata.publishedAt)}
-                  </Link>
-                </li>
-              ))}
+              {groupedPosts[year].map((post: BlogPost) => {
+                if(post.metadata.draft !== "true") {
+                  return(
+                    <li key={post.slug}>
+                      <Link href={`/blog/${post.slug}`}>
+                        {post.metadata.title} -{" "}
+                        {formatDate(post.metadata.publishedAt)}
+                      </Link>
+                    </li>
+                  )
+                }
+                })}
             </ul>
           </div>
         ))}

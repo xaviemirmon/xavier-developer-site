@@ -13,7 +13,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     return;
@@ -53,7 +54,8 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-export default function Blog({ params }: { params: { slug: string } }) {
+export default async function Blog(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
