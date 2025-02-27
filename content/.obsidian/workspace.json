@@ -4,22 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "8a2f97445f950b69",
+        "id": "957a2c14b31a9037",
         "type": "tabs",
         "children": [
           {
-            "id": "d97a5d3dcf078772",
+            "id": "78009caf05896e7b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "posts/welcome-to-v3-of-my-website.mdx",
+                "file": "posts/drafts/repairing-over-replacing.mdx",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "repairing-over-replacing"
+            }
+          },
+          {
+            "id": "f0fb45f43f7379ed",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "pages/about.mdx",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "about"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -39,7 +56,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -54,7 +73,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -62,7 +83,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -85,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "posts/welcome-to-v3-of-my-website.mdx",
+                "file": "pages/about.mdx",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +116,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for about"
             }
           },
           {
@@ -102,10 +127,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "posts/welcome-to-v3-of-my-website.mdx",
+                "file": "pages/about.mdx",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from about"
             }
           },
           {
@@ -116,7 +143,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -125,16 +154,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "posts/welcome-to-v3-of-my-website.mdx"
-              }
+                "file": "pages/about.mdx"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of about"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -147,21 +177,26 @@
       "edit-mdx:New .mdx file": false
     }
   },
-  "active": "9f75085d0baadfbc",
+  "active": "f0fb45f43f7379ed",
   "lastOpenFiles": [
+    "pages/cv.mdx",
+    "templates/blog-post.md",
+    "posts/drafts/repairing-over-replacing.mdx",
+    "posts/postgresql-vs-mysql-for-drupal-8.mdx",
+    "posts/repairing-over-replacing.mdx.md",
+    "posts/repairing-over-replacing.md",
+    "drafts/Untitled.mdx",
+    "Untitled.md",
+    "posts/a-note-about-gatsby-cloud-previews-internals.mdx",
+    "templates/blog-post.mdx",
+    "projects/pagebuilder.mdx",
+    "posts/welcome-to-v3-of-my-website.mdx",
+    "templates",
+    "posts/drafts",
+    "projects/seaside-admin.mdx",
     "xavier-site-screenshot.png",
     "xavier-blog-screenshot.png",
-    "posts/welcome-to-v3-of-my-website.mdx",
     "Screenshot 2024-10-09 at 09.37.27.png",
-    "posts/using-window-with-gatsbys-runtime-ssr-mode.mdx",
-    "posts/welcome-to-v3-of-my-website.md",
-    "posts/effortless-content-editing-how-puck-makes-the-complexsimple-and-flexible.mdx",
-    "posts/drupal-8-dev-weekend.mdx",
-    "posts/think-nation-building-the-future-of-drupal.mdx",
-    "posts/drupalcamp-brighton-2016-learns.mdx",
-    "posts/my-micro-lifestyle.mdx",
-    "posts/what-does-a-cms-need-to-be-in-2018.mdx",
-    "posts/kews-little-pigs-farm.mdx",
-    "posts/postgresql-vs-mysql-for-drupal-8.mdx"
+    "posts/welcome-to-v3-of-my-website.md"
   ]
 }
