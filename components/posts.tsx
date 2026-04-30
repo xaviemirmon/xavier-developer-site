@@ -6,7 +6,7 @@ import { Metadata } from "@/utils";
 
 interface BlogPost {
   slug: Key;
-  metadata: Metadata
+  metadata: Metadata;
 }
 
 export function BlogPosts() {
@@ -23,17 +23,20 @@ export function BlogPosts() {
             <p className={`${styles.year}`}>{year}</p>
             <ul className={`${styles.list}`}>
               {groupedPosts[year].map((post: BlogPost) => {
-                if(post.metadata.draft !== "true") {
-                  return(
+                if (post.metadata.draft !== "true") {
+                  return (
                     <li key={post.slug}>
-                      <Link href={`/blog/${post.slug}`}>
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className={`${styles.link}`}
+                      >
                         {post.metadata.title} -{" "}
                         {formatDate(post.metadata.publishedAt)}
                       </Link>
                     </li>
-                  )
+                  );
                 }
-                })}
+              })}
             </ul>
           </div>
         ))}

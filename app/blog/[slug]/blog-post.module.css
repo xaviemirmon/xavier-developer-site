@@ -1,7 +1,11 @@
 .post {
-  padding-top: 40px;
+  padding-top: 40px !important;
   padding-bottom: 40px;
   .prose > * {
     margin-top: 32px;
   }
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 }

@@ -1,0 +1,36 @@
+.socialIcons {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+}
+
+.socialIcons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-link);
+  transition: all 0.2s ease;
+}
+
+.socialIcons a:hover {
+  transform: translateY(-2px);
+  color: var(--color-link-hover);
+}
+
+.socialIcons svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 640px) {
+  .socialIcons {
+    gap: 12px;
+  }
+  
+  .socialIcons svg {
+    width: 20px;
+    height: 20px;
+  }
+}

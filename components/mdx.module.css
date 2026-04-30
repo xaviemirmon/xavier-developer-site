@@ -1,0 +1,12 @@
+.link {
+  text-decoration: underline;
+  font-weight: 600;
+}
+.listItem {
+  margin: 8px 0;
+}
+
+.unorderedList,
+.orderedList {
+  font-weight: 500;
+}
