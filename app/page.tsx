@@ -26,7 +26,16 @@ export default async function Home() {
             <h1>
               Hi 👋 I&apos;m <span className="text-gradient">Xavier</span>
             </h1>
-            <h2>Lead Fullstack Product Engineer</h2>
+            <h2>
+              Founding Engineer @{" "}
+              <a
+                href="https://puckeditor.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Puck
+              </a>
+            </h2>
           </div>
         </div>
 
@@ -39,7 +48,10 @@ export default async function Home() {
               {projects &&
                 projects.map((project) => {
                   return (
-                    <div key={project.metadata.title} className={styles["project-card"]}>
+                    <div
+                      key={project.metadata.title}
+                      className={styles["project-card"]}
+                    >
                       <div className={styles.image}>
                         <Image
                           src={`/images/projects/${project.metadata.cover}`}
