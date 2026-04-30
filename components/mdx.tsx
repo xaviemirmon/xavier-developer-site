@@ -1,6 +1,6 @@
 import Link from "next/link";
 import NextImage from "next/image";
-import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
+import { MDXRemote, MDXRemoteProps } from "next-mdx-remote-client/rsc";
 import { highlight } from "sugar-high";
 import React, { ReactNode } from "react";
 import { UrlObject } from "url";
@@ -149,6 +149,7 @@ function Image(props: ImageProps) {
         width: "90vw",
         height: "auto",
         minHeight: "500px",
+        maxWidth: "1040px",
         position: "relative",
       }}
     >
@@ -164,7 +165,18 @@ function Image(props: ImageProps) {
 }
 
 function Paragraph({ children }: { children: ReactNode }) {
-  return typeof children === "string" ? <p>{children}</p> : children;
+  const childArray = React.Children.toArray(children);
+
+  const isImageOnlyParagraph =
+    childArray.length === 1 &&
+    React.isValidElement(childArray[0]) &&
+    childArray[0].type === Image;
+
+  if (isImageOnlyParagraph) {
+    return <>{children}</>;
+  }
+
+  return <p>{children}</p>;
 }
 
 // Updated Code component to handle optional children and ReactNode

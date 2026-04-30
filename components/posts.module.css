@@ -12,3 +12,13 @@
     padding: 8px 0;
   }
 }
+
+.link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}

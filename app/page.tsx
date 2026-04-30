@@ -1,10 +1,10 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { getBlogPosts, getProjects } from "@/utils";
+import { getBlogPosts } from "@/utils";
+import Button from "@/components/Button/Button";
 
 export default async function Home() {
-  const projects = await getProjects();
   const posts = await getBlogPosts();
 
   return (
@@ -39,56 +39,16 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className={`${styles.projects} container`}>
-          <div>
-            <h2>Projects</h2> <em>(I contribute to or maintain)</em>
-          </div>
-          <div className={styles.carousel}>
-            <div>
-              {projects &&
-                projects.map((project) => {
-                  return (
-                    <div
-                      key={project.metadata.title}
-                      className={styles["project-card"]}
-                    >
-                      <div className={styles.image}>
-                        <Image
-                          src={`/images/projects/${project.metadata.cover}`}
-                          alt={project.metadata.title}
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          style={{ width: "100%", height: "auto" }}
-                        />
-                      </div>
-                      <div className={styles.text}>
-                        <h3>{project.metadata.title}</h3>
-                        <Link
-                          href={
-                            project.metadata.slug ? project.metadata.slug : "#"
-                          }
-                        >
-                          View more
-                        </Link>
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-        </div>
-
-        <div className="container">
+        <div className={`${styles.blog} container`}>
           <div className={`${styles.blogTitle}`}>
             <h2>Latest blogs</h2>
-            <Link href={"/blog"}>View all</Link>
+            <Button href="/blog">View all</Button>
           </div>
 
           {posts &&
             posts.map(
               (blog, index: number) =>
-                index < 5 && (
+                index < 10 && (
                   <p key={blog.slug} className={styles.postTitle}>
                     <Link href={`/blog/${blog.slug}`}>
                       {blog.metadata.title}

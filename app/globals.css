@@ -22,13 +22,11 @@ body {
 h1 {
   font-size: 64px;
   font-weight: 700;
-
 }
 
 h2 {
   font-size: 40px;
   font-weight: 700;
- 
 }
 
 h3 {
@@ -48,7 +46,6 @@ ol {
 
 .container {
   padding: 0 80px;
-
 }
 
 body {
@@ -69,11 +66,19 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+main,
+article,
+section {
+  margin-bottom: 64px;
+}
 footer.container {
   padding: 16px 80px;
-  margin-top: 40px;
   border-top: 1px solid #e7dbd2;
+  background: var(--background);
   color: var(--color-link);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 * {
@@ -83,8 +88,13 @@ footer.container {
 }
 
 a {
-  color: inherit;
+  color: var(--color-link);
   text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {

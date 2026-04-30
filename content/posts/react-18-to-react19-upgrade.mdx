@@ -1,0 +1,51 @@
+---
+title: "Upgrading React 18 to React 19: Key Steps for a Smooth Upgrade"
+publishedAt: 2025-04-28T11:33Z
+summary:
+draft: "false"
+---
+
+Upgrading your React app from version 18 to 19 comes with exciting new features and improvements ( I am looking at you `use()`). However, it requires careful planning to avoid issues and disruptions. Having been through the upgrade process myself I've found some of the common gotcha's and learnt some solid approaches along the way. In this post, I’ll walk you through the key steps to upgrade.
+
+![](../0_85xMRqJb8m0-y2vG.png)
+
+## 1. Ensure unit tests are in place
+
+Before upgrading, it’s very helpful to have solid unit test coverage. The new version may introduce breaking changes, and tests will help you catch issues early. Tools like Jest or Vitest and React Testing Library make it easy to verify your components still work as expected after the upgrade.
+
+If you don’t have tests, I suggest you add them first. Automated tests will give you a safety net and confidence as you move forward with the upgrade. While it may be daunting, a good testing library will have built in snapshotting which you can easily add to your codebase. Snapshotting ensures that your components render the same before and after the upgrade and alerts you to where there any changes that need to be addressed.
+
+## 2. Identify unsupported libraries
+
+Not all third-party libraries will be compatible with React 19 right away. Before upgrading, check your dependencies to ensure they support the new version. Pay attention to libraries that rely on React internals or haven’t been updated recently. Review the changelogs of the projects for any deprecated or broken libraries.
+
+If any critical libraries aren’t supported yet, you may need to wait for updates or look for alternatives.
+
+## 3. Upgrading to React 19
+
+Once you’ve identified that all libaries are supported, it’s time to upgrade. Using a package manager such as Yarn makes the process.
+
+1. First, make sure you’ve updated Yarn to the latest version:
+
+   ```bash
+   yarn set version latest
+   ```
+
+2. Then, update React and ReactDOM to version 19:
+   `yarn upgrade react@19 react-dom@19`
+3. After upgrading, check your dependencies to make sure everything is in sync:
+   yarn check
+
+Now, your project is on React 19, and you can start addressing any changes introduced by the new version.
+
+## 4. Using Codemods for useRef and Other Changes
+
+React 19 brings changes to hooks like useRef, and upgrading may require some code refactoring. A third-party codemod tool, such as the one available from [react-codemod](https://github.com/reactjs/react-codemod), can help with this process.
+
+Run the relevant codemods to automatically update your codebase. They will handle things like refactoring deprecated lifecycle methods, removing outdated APIs, and ensuring compatibility with the new React version.
+
+After running the codemods, manually check areas not covered by them and make sure everything functions as expected.
+
+## **Conclusion**
+
+Upgrading from React 18 to 19 doesn’t have to be a daunting task. With solid unit tests, careful library checks, the help of Yarn for the upgrade process, and third-party codemods for addressing breaking changes, you can ensure a smooth transition. React 19 offers great improvements, and keeping your app up-to-date is crucial for maintaining performance and taking advantage of new features.
