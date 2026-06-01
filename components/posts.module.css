@@ -8,9 +8,6 @@
 
 .list {
   list-style-type: none;
-  & > li {
-    padding: 8px 0;
-  }
 }
 
 .link {

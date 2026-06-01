@@ -20,7 +20,7 @@
   list-style: none;
   display: flex;
   font-weight: 500;
-  color: var(--color-link);
+  color: var(--color-tertiary);
 }
 
 .header nav ul li {
@@ -28,6 +28,10 @@
   .active {
     color: var(--color-link-hover);
   }
+}
+
+.header nav ul li a {
+  color: inherit;
 }
 
 .header nav ul li:hover {

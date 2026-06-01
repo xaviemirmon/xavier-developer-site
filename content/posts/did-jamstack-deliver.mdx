@@ -1,0 +1,78 @@
+---
+title: "Did Jamstack deliver?"
+publishedAt: 2026-06-01T16:00Z
+summary: A retrospective on the Jamstack bet. Where it paid off, where it didn't, and how Puck answers the editorial layer it never quite solved.
+draft: "false"
+---
+
+Back in 2018 I was deep in a Drupal build. The site performance grinding under its own weight. Yet, we had a great editorial expirence.  I was pretty sure the answer was Jamstack.
+
+
+![](../guerrillabuzz-7hA2wqBcSF8-unsplash.jpg)
+
+The Lighthouse scores looked great in the demos. The architecture diagrams looked clean. The pitch was simple. Pre-render everything. Decouple your content. Serve it from a CDN. Sleep at night. It was the kind of pitch that survives a leadership meeting.
+
+Eight years on, the word has quietly fallen out of use. Gatsby has been folded into [the tech graveyard](/blog/farewell-gatsby-its-been-one-heck-of-a-ride). The conferences have stopped. So it's a fair moment to take stock. Did Jamstack actually deliver? And the question that took me longest to answer honestly: what did it never quite solve?
+
+## What we were betting on
+
+Strip the marketing and the bet was three things:
+
+1. Render at build time wherever you can.
+2. Keep the content and the presentation in separate systems.
+3. Treat the CDN as the application.
+
+That was the technical bet. The organisational bet was different. Engineering teams would prefer this model. Editors would adapt. The ecosystem would converge on it. The technical bet largely held. The organisational one didn't. That's where most of the damage was done.
+
+## Where it paid off
+
+**Performance became something everyone took seriously.** "Render at build time unless there's a real reason not to" got absorbed across the industry. Core Web Vitals became a conversation outside engineering.  Marketing teams starting talking about how performance was impacting their organic SEO. That shift sticks, regardless of stack.
+
+**Headless is now the default for serious work.** Whether anyone uses the word or not, the pattern won. Teams that committed early scale more cleanly today. They aren't trying to retro-fit composability into a Drupal monolith in 2026.
+
+**Image, asset and edge pipelines.** Gatsby's image plugin alone did more for real-world web performance than half a decade of guidance. Every framework worth its salt ships an equivalent now. Edge runtimes have gone from a Jamstack quirk to the default deployment target on every serious platform.
+
+**Cleaner vendor exits.** Decoupling sounds abstract until you've had to swap a CMS without rewriting the frontend. Or, the approach I took build the frontend and gradually and proxy legacy pages. Teams that paid the upfront cost get to make those moves got incremental changes in  weeks. Not a quarters. No more massive migration costs and timelines. 
+
+## Where it didn't
+
+This is the harder bit. I spent a long time as an advocate.
+
+**The bill often wasn't lower.** Add the headless CMS, the search service, the image CDN, the build platform and the preview environments. The total came in higher than the WordPress or Drupal install it replaced.
+
+**Build times became a real operational problem.** A few hundred pages, fine. A few thousand and you were watching CI for an hour. We solved it eventually. Incremental builds, slices, partial hydration. None of that was in the original pitch.
+
+**The static-first narrative failed with editors.** Real businesses publish in response to events. They expect the change live in seconds. As soon as you wanted personalisation, auth or anything real-time, you were bolting on SSR or pretending you didn't need to.
+
+**The ecosystem consolidated faster than expected.** Gatsby was acquired and effectively retired. Netlify pivoted. Anyone who based long-range strategy on framework independence had to rewrite that strategy.
+
+And then there's the one I'd put above all the others. It's the one that drove me towards what I work on now.
+
+## The editor problem Jamstack never solved
+
+The whole point of decoupling was that content and presentation could evolve independently. In practice, the engineering side of that promise worked. The editorial side didn't. It's the bit your marketing team, your content team and your CMS editors actually live in. It got worse before it got better.
+
+Here's what we asked editors to accept. Your content now lives in a headless CMS. Your design system lives in a separate React codebase. Your page composition either lives in the CMS as opaque JSON. Or in the codebase as developer-only templates. Or in some third "block library" abstraction that nobody fully owns. Want to assemble a new landing page? Build it in a complex backend. Want to preview it? Hope the rebuild finishes. Want to drag a testimonial above the hero? Sorry. That's a developer change.
+
+The page-builder vendors saw the gap and filled it. Site Studio, Builder.io, Elementor, the rest. They worked. But you had to put your editorial workflow inside someone else's runtime, behind a subscription, on a data model you didn't own. For anyone running a serious product, that was a trade most of us weren't willing to make.
+
+This is the gap I now spend my days on. Puck, the open-source visual editor I help build as founding engineer, takes a different angle. The premise is simple. Editors compose pages from the same React components your engineers already ship. Inside your own application. Against your own data model. Drag, drop, edit, publish. The components are yours. The JSON model is yours. There's no third-party runtime sitting in the middle of your stack.
+
+What that means for the editorial and presentation split:
+
+- **The presentation layer stays where it belongs.** In your React codebase, in your design system, owned by engineering. Components ship with their own field schemas. The editor only sees the props you've decided to expose.
+- **The editorial layer is a thin, embeddable UI.** Puck itself. It runs inside your application, not somewhere else. Behind your auth, your roles, your audit log, your environment.
+- **The output is a portable JSON document.** Not vendor-locked. Not opaque. Store it in your existing CMS, in a database, in a Git repo, alongside whatever else you already have. It's just data.
+- **The composition model is yours.** You decide which components exist, how they nest, what fields they expose, what publishing means. Puck is the editor, not the schema.
+
+That's the bit Jamstack pointed at and never quite reached. An editorial experience as composable as the presentation layer. Without surrendering control of either. Headless gave us decoupling. Puck gives us recoupling that an editor can actually use.
+
+## So, did it deliver?
+
+Yes. But not as advertised.
+
+It delivered as a set of habits. Pre-render aggressively. Decouple your content. Lean on the CDN. Separate vendor responsibility. The rest of the industry has now adopted those under different names. It did not deliver as a coherent stack you'd pick by name in 2026. The label has done its job.
+
+What it didn't deliver is the editorial half of the promise. That problem stayed open for the best part of a decade. It's the one I find genuinely worth working on. Puck is my answer to it. Yours might be something else. Either way, the next architectural cycle gets judged less on how well it pre-renders. More on whether editors can actually use it without filing a ticket.
+
+Jamstack delivered the discipline. The editorial layer is the unfinished business. That's the bit we're shipping now.
