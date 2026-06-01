@@ -35,7 +35,7 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href="/cv" className={isActive("/blog")}>
+            <Link href="/cv" className={isActive("/cv")}>
               CV
             </Link>
           </li>
